@@ -1,14 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/green</item>
 
-        <!-- Set background color to darkgray -->
-        <item name="android:background">@color/darkGray</item>
+        <!-- Change the color of the background -->
+        <item name="android:windowBackground">@color/darkGray</item>
+
+        <!-- Make the statusBar transparent -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+
         <!-- Set text color to white -->
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
@@ -17,16 +22,12 @@
 
         <!-- Change the color of all buttons to green but need a recent API-->
         <item name="android:colorButtonNormal">@color/green</item>
-
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <!-- Personalized action bar -->
+    <style name="AppTheme.MyActionBar">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowNoTitle">false</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

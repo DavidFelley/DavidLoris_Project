@@ -13,15 +13,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void login(View view)
+    {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
+    }
     public void signIn(View view)
     {
         Intent intent = new Intent(this, SignIn.class);
-        startActivity(intent);
-    }
-
-    public void lateralMenu(View view)
-    {
-        Intent intent = new Intent(this, MenuLateral.class);
         startActivity(intent);
     }
 }

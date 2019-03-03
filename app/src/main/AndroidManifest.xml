@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.davidloris_project">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".MenuLateral"
-            android:label="@string/title_activity_menu_lateral"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".WritingAswerPost" />
-        <activity android:name=".InPost" />
-        <activity android:name=".RecentPost" />
-        <activity android:name=".privateMessages" />
-        <activity android:name=".HomeCategory" />
-        <activity android:name=".MyAccount" />
-        <activity android:name=".About" />
-        <activity android:name=".Home" />
-        <activity android:name=".SignIn" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignIn"/>
+        <activity android:name=".Home" />
+        <activity android:name=".HomeCategory" />
+        <activity android:name=".InPost" />
+        <activity android:name=".About" />
+        <activity android:name=".MyAccount" />
+        <activity android:name=".RecentPost" />
     </application>
 
 </manifest>
