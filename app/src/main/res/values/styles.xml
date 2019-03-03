@@ -10,7 +10,7 @@
 
         <!-- Change la couleur de tous les boutons mais demande une API très récente (A voir!)-->
         <item name="android:colorButtonNormal">@color/green</item>
-
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
 </resources>
