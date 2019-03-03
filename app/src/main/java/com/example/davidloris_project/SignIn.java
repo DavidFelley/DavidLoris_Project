@@ -13,10 +13,9 @@ public class SignIn extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
     }
 
-
-    public void goHomePage(View view)
+    public void login(View view)
     {
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

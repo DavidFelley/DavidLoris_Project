@@ -7,13 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/green</item>
 
-        <!-- Set background color to darkgray and text to white -->
+        <!-- Set background color to darkgray -->
         <item name="android:background">@color/darkGray</item>
+        <!-- Set text color to white -->
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
+        <!-- Set line color to white -->
         <item name="colorControlNormal">@color/white</item>
 
-        <!-- Change la couleur de tous les boutons mais demande une API très récente (A voir!)-->
+        <!-- Change the color of all buttons to green but need a recent API-->
         <item name="android:colorButtonNormal">@color/green</item>
 
     </style>
