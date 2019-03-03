@@ -2,4 +2,6 @@
     <string name="app_name">Forum</string>
     <string name="username_field">Username</string>
     <string name="email_field">Email</string>
+    <string name="passwordField">Password</string>
+    <string name="confirmPassword">Confirm password</string>
 </resources>

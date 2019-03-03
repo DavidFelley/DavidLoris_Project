@@ -10,7 +10,8 @@
         <!-- Set background color to darkgray and text to white -->
         <item name="android:background">@color/darkGray</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:colorControlNormal">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
 
         <!-- Change la couleur de tous les boutons mais demande une API très récente (A voir!)-->
         <item name="android:colorButtonNormal">@color/green</item>
