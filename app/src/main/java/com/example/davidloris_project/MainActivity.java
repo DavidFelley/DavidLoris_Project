@@ -18,4 +18,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
     }
+
+    public void lateralMenu(View view)
+    {
+        Intent intent = new Intent(this, MenuLateral.class);
+        startActivity(intent);
+    }
 }
