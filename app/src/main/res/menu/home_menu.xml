@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_about"
-            android:title="@string/about"
-            android:icon="@drawable/ic_info"/>
+            android:icon="@drawable/ic_info"
+            android:title="@string/about" />
         <item
             android:id="@+id/nav_account"
-            android:title="@string/my_account"
-            android:icon="@drawable/ic_account_circle"/>
+            android:icon="@drawable/ic_account"
+            android:title="@string/my_account" />
         <item
             android:id="@+id/nav_recentPost"
-            android:title="@string/recent_posts"
-            android:icon="@drawable/ic_chat_bubble_black_24dp"/>
+            android:icon="@drawable/ic_chat"
+            android:title="@string/recent_posts" />
     </group>
 
 </menu>

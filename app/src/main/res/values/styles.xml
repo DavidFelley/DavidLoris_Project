@@ -3,15 +3,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/blackGray</item>
         <item name="colorAccent">@color/green</item>
 
         <!-- Change the color of the background -->
         <item name="android:windowBackground">@color/darkGray</item>
 
-        <!-- Make the statusBar transparent -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:actionMenuTextColor">@color/white</item>
 
         <!-- Set text color to white -->
@@ -20,14 +18,12 @@
         <!-- Set line color to white -->
         <item name="colorControlNormal">@color/white</item>
 
-        <!-- Change the color of all buttons to green but need a recent API-->
-        <item name="android:colorButtonNormal">@color/green</item>
     </style>
 
     <!-- Personalized action bar -->
     <style name="AppTheme.MyActionBar">
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>
