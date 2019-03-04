@@ -25,7 +25,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <Button
-            android:id="@+id/button16"
+            android:id="@+id/btn_sport"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -37,10 +37,10 @@
             android:text="@string/sport"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button15" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_sex" />
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/btn_sex"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -52,10 +52,10 @@
             android:text="@string/sexuality"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button14" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_IT" />
 
         <Button
-            android:id="@+id/button14"
+            android:id="@+id/btn_IT"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -67,10 +67,10 @@
             android:text="@string/it"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button13" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_health" />
 
         <Button
-            android:id="@+id/button13"
+            android:id="@+id/btn_health"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -82,10 +82,10 @@
             android:text="@string/health"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button12" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_game" />
 
         <Button
-            android:id="@+id/button12"
+            android:id="@+id/btn_game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -97,10 +97,10 @@
             android:text="@string/game"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button11" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_car" />
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/btn_car"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -113,10 +113,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button5" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_actuality" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btn_actuality"
             android:layout_width="0dp"
             android:layout_height="49dp"
             android:layout_marginStart="24dp"
