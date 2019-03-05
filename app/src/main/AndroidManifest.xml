@@ -20,9 +20,6 @@
         <activity android:name=".Home" />
         <activity android:name=".HomeCategory" />
         <activity android:name=".InPost" />
-        <activity android:name=".About" />
-        <activity android:name=".MyAccount" />
-        <activity android:name=".RecentPost" />
     </application>
 
 </manifest>
