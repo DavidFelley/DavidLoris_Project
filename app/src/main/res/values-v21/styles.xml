@@ -17,6 +17,7 @@
         <!-- Set text color to white -->
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
+
         <!-- Set line color to white -->
         <item name="colorControlNormal">@color/white</item>
 
@@ -25,9 +26,4 @@
     </style>
 
     <!-- Personalized action bar -->
-    <style name="AppTheme.MyActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
 </resources>

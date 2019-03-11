@@ -3,6 +3,8 @@ package com.example.davidloris_project;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,9 +17,11 @@ import android.view.View;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private FragmentManager fm = getSupportFragmentManager();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -36,7 +40,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
 
         if(savedInstanceState == null)
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            fm.beginTransaction().replace(R.id.fragment_container, new ListCategoryFragment()).commit();
     }
 
     @Override
@@ -44,13 +48,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         switch(item.getItemId()){
             case R.id.nav_about:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
                 break;
             case R.id.nav_account:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
                 break;
             case R.id.nav_recentPost:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
                 break;
         }
 
@@ -69,38 +73,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
     }
 
-    public void Actuality(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
-    }
-
-    public void Automobile(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
-    }
-
-    public void Game(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
-    }
-
-    public void Health(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
-    }
-
-    public void IT(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
-    }
-
-    public void Sexuality(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
-    }
-
-    public void Sport(View view) {
-        Intent intent = new Intent(this, HomeCategory.class);
-        startActivity(intent);
+    public void CategoryClick(View view) {
+        fm.beginTransaction().replace(R.id.fragment_container, new CategoryFragment()).commit();
     }
 }

@@ -24,9 +24,5 @@
     </style>
 
     <!-- Personalized action bar -->
-    <style name="AppTheme.MyActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 
 </resources>
