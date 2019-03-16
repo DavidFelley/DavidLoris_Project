@@ -12,14 +12,10 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment displayedFragment = null;
 
-    private DatabaseManager databaseManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        databaseManager = new DatabaseManager(this);
 
         if(savedInstanceState == null) {
             displayedFragment = new LoginFragment();
