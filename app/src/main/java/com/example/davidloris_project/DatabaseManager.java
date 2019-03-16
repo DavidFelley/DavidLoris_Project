@@ -32,6 +32,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                                             + "Email text not null,"
                                             + "Password text not null"
                                             +")";
+        String test;
 
         String strsql2 = "create table Subject ( "+
                                                     "IdSubject integer primary key autoincrement,"
