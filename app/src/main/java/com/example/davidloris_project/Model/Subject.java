@@ -20,5 +20,45 @@ public class Subject {
 
     private int idGenre;
 
+    public int getIdSubject() {
+        return idSubject;
+    }
+
+    public void setIdSubject(int idSubject) {
+        this.idSubject = idSubject;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTextSubject() {
+        return textSubject;
+    }
+
+    public void setTextSubject(String textSubject) {
+        this.textSubject = textSubject;
+    }
+
+    public int getIdAutor() {
+        return idAutor;
+    }
+
+    public void setIdAutor(int idAutor) {
+        this.idAutor = idAutor;
+    }
+
+    public int getIdGenre() {
+        return idGenre;
+    }
+
+    public void setIdGenre(int idGenre) {
+        this.idGenre = idGenre;
+    }
+
 
 }

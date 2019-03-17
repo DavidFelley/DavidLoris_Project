@@ -7,10 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.davidloris_project.Model.User;
+
 public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment displayedFragment = null;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
 
-        if(displayedFragment.getClass().getSimpleName().equals("SignInFragment")){
+        if(displayedFragment.getClass().getSimpleName().equals("SignInFragment") && user.getUsername() == "loris" && user.getPassword() == "miam"){
             displayedFragment = new LoginFragment();
             fm.beginTransaction().replace(R.id.login_container, displayedFragment).commit();
         }
