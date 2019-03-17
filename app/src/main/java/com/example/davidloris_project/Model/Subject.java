@@ -16,49 +16,64 @@ public class Subject {
 
     private  String textSubject;
 
+    private String category;
+
     private int idAutor;
 
-    private int idGenre;
+    private String date;
+
+    public Subject(String title, String textSubject, String category, String date){
+        this.title = title;
+        this.textSubject = textSubject;
+        this.category = category;
+        this.date = date;
+    }
 
     public int getIdSubject() {
         return idSubject;
-    }
-
-    public void setIdSubject(int idSubject) {
-        this.idSubject = idSubject;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getTextSubject() {
         return textSubject;
     }
 
-    public void setTextSubject(String textSubject) {
-        this.textSubject = textSubject;
+    public String getCategory() {
+        return category;
     }
 
     public int getIdAutor() {
         return idAutor;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setIdSubject(int idSubject) {
+        this.idSubject = idSubject;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTextSubject(String textSubject) {
+        this.textSubject = textSubject;
+    }
+
+    public void setCategory(String category) {
+        category = category;
+    }
+
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
 
-    public int getIdGenre() {
-        return idGenre;
+    public void setDate(String date) {
+        this.date = date;
     }
-
-    public void setIdGenre(int idGenre) {
-        this.idGenre = idGenre;
-    }
-
-
 }

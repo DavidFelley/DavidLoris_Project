@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void login(View view){
 
-        if(displayedFragment.getClass().getSimpleName().equals("SignInFragment") && user.getUsername() == "loris" && user.getPassword() == "miam"){
+        if(displayedFragment.getClass().getSimpleName().equals("SignInFragment")){
             displayedFragment = new LoginFragment();
             fm.beginTransaction().replace(R.id.login_container, displayedFragment).commit();
         }
