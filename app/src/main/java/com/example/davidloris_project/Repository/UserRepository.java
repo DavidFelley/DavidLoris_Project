@@ -18,7 +18,6 @@ public class UserRepository {
         MyDatabase database = MyDatabase.getInstance(application);
         userDao = database.userDAO();
 
-
     }
 
 

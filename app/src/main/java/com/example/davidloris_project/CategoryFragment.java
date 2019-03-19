@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +28,23 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
+        View categoryView = inflater.inflate(R.layout.fragment_category, container, false);
+
+        RecyclerView recyclerView = categoryView.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
+
+        final SubjectAdapter adapter = new SubjectAdapter();
+        recyclerView.setAdapter(adapter);
+
         subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
         subjectVM.getAllSubjects().observe(this, new Observer<List<Subject>>() {
             @Override
             public void onChanged(@Nullable List<Subject> subjects) {
-                //Update recycler view
-                Toast.makeText(getActivity(), "Ti", Toast.LENGTH_SHORT).show();
+                adapter.setSubjects(subjects);
             }
         });
 
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        return categoryView;
     }
 }

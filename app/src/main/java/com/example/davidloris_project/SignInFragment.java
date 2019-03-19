@@ -15,7 +15,7 @@ import com.example.davidloris_project.Model.User;
 
 public class SignInFragment extends Fragment {
 
-    private EditText UserName, Email, PassWord1, PassWord2;
+    private EditText UserName, PassWord1, PassWord2;
     private Button Signin;
 
 
@@ -32,7 +32,6 @@ public class SignInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_signin, container, false);
 
         UserName = view.findViewById(R.id.usernameField);
-        Email = view.findViewById(R.id.emailField);
         PassWord1 = view.findViewById(R.id.passwordField);
         PassWord2 = view.findViewById(R.id.passwordConfirmField);
         Signin = view.findViewById(R.id.buttonSignin);
@@ -45,15 +44,13 @@ public class SignInFragment extends Fragment {
 
                 String password2 = PassWord2.getText().toString();
 
-                User user = new User();
-                user.setUsername(userName);
-                user.setPassword(password2);
+                User user = new User(userName,password2);
 
                 MainActivity.myDatabase.userDAO().insertUser(user);
+
                 Toast.makeText(getActivity(), "User added successfully",Toast.LENGTH_SHORT).show();
 
                 UserName.setText("");
-                Email.setText("");
                 PassWord1.setText("");
                 PassWord2.setText("");
 

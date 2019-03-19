@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
 
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/black</item>
@@ -21,8 +21,10 @@
         <!-- Set line color to white -->
         <item name="colorControlNormal">@color/white</item>
 
-    </style>
+        <!-- Remove the action bar by default -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
-    <!-- Personalized action bar -->
+    </style>
 
 </resources>
