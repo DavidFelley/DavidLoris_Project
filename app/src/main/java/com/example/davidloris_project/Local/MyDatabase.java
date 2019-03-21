@@ -50,6 +50,7 @@ public abstract class MyDatabase extends RoomDatabase {
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private SubjectDAO subjectDao;
+        private UserDAO userDAO;
 
         private PopulateDbAsyncTask(MyDatabase db) {
             subjectDao = db.subjectDAO();
@@ -64,6 +65,7 @@ public abstract class MyDatabase extends RoomDatabase {
             subjectDao.insertSubject(new Subject("How to test a database 3 ?", "This is our first try with the room database.", "IT", date.format(Calendar.getInstance().getTime())));
             subjectDao.insertSubject(new Subject("How to test a database 4 ?", "This is our first try with the room database.", "IT", date.format(Calendar.getInstance().getTime())));
 
+            userDAO.insertUser(new User("Loris", "Clivaz"));
             return null;
         }
     }

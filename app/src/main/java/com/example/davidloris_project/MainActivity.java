@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Local.UserDAO;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fm = getSupportFragmentManager();
     private Fragment displayedFragment = null;
+    private LoginFragment loginFragment;
 
     public  static MyDatabase myDatabase;
 
@@ -32,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void login(View view){
+    public void Login(View view){
 
-        if(displayedFragment.getClass().getSimpleName().equals("SignInFragment") ){
+
+        if(displayedFragment.getClass().getSimpleName().equals("SignInFragment")  ){
             displayedFragment = new LoginFragment();
             fm.beginTransaction().replace(R.id.login_container, displayedFragment).commit();
         }
-        else{
+        else if (loginFragment.getLogin().equals("Loris") && loginFragment.getPassword().equals("Clivaz")){
             Intent intent = new Intent(this, Home.class);
             startActivity(intent);
         }
