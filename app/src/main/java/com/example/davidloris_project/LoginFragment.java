@@ -18,20 +18,14 @@ import com.example.davidloris_project.Model.User;
 
 public class LoginFragment extends Fragment {
 
-
-
-
    public EditText login;
    public EditText password;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_login, container, false);
-
-
 
         return v;
     }

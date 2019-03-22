@@ -16,7 +16,6 @@
         android:ems="10"
         android:hint="@string/passwordField"
         android:inputType="textPassword"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -59,7 +58,6 @@
         android:ems="10"
         android:hint="@string/username_field"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/passwordField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
