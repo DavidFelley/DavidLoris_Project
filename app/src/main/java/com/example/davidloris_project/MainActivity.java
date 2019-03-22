@@ -47,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void Login(View view){
 
-       user = userVM.getUserLogin(login.getText().toString(),password.getText().toString());
 
         login = (EditText) findViewById(R.id.usernameField);
         password = (EditText) findViewById(R.id.passwordField);
+
+        user = userVM.getUserLogin(login.getText().toString(),password.getText().toString());
+
 
         Log.d("Myapp", login.getText().toString());
         Log.d("Myapp", password.getText().toString());
@@ -69,13 +71,12 @@ public class MainActivity extends AppCompatActivity {
 
              }
 
-             //else {
+           //  else {
             //AlertDialog.Builder ErrorMsg = new AlertDialog.Builder(this);
-            //ErrorMsg.setMessage("Erreur dans la saisie du login ")
-              //      .setTitle("Erreur");
-            //ErrorMsg.create();
+            //ErrorMsg.setMessage("Erreur dans la saisie du login ").setTitle("Erreur");
+           // ErrorMsg.create();
             //ErrorMsg.show();
-       // }
+        //}
 
     }
     public void signIn(View view)

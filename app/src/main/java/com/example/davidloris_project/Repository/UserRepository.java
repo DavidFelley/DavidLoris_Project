@@ -1,16 +1,11 @@
 package com.example.davidloris_project.Repository;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.example.davidloris_project.Local.MyDatabase;
-import com.example.davidloris_project.Local.SubjectDAO;
 import com.example.davidloris_project.Local.UserDAO;
-import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.Model.User;
-
-import java.util.List;
 
 public class UserRepository {
     private UserDAO userDao;
@@ -21,21 +16,9 @@ public class UserRepository {
 
     }
 
-    public User getUserLogin(String username, String password)
-    {
-        User user = userDao.getUserLogin(username, password);
-
-
-        return user;
-    }
-
-
-
     public void insert(User user){
         new UserRepository.InsertUserAsyncTask(userDao).execute(user);
     }
-
-
 
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void>
     {
@@ -51,22 +34,33 @@ public class UserRepository {
         }
     }
 
-    private static class getUserLoginAsyncTask extends AsyncTask<User, Void, Void>
+    public User getUserLogin(String username, String password)
     {
-        private UserDAO userDAO;
 
-        private getUserLoginAsyncTask(UserDAO userDAO){this.userDAO = userDAO;}
-
-        @Override
-        protected Void doInBackground(User... users) {
-
-           userDAO.getUserLogin(users[0].getUsername(), users[0].getPassword());
-            return null;
-        }
+        User user = new getUserLoginAsyncTask(userDao).doInBackground(username, password);
 
 
+        return user;
     }
 
 
+    private static class getUserLoginAsyncTask extends AsyncTask<String, Void, User>
+    {
 
+        private UserDAO userDAO;
+
+
+        private getUserLoginAsyncTask(UserDAO userDAO){this.userDAO = userDAO;}
+
+
+        @Override
+        protected User doInBackground(String... strings) {
+
+            User user =  userDAO.getUserLogin(strings.toString(),strings.toString());
+
+
+            return user;
+        }
+
+    }
 }
