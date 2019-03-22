@@ -39,7 +39,6 @@ public class SubjectRepository {
         @Override
         protected Void doInBackground(Subject... subjects) {
             subjectDao.insertSubject(subjects[0]);
-
             return null;
         }
     }

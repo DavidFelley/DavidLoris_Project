@@ -19,4 +19,6 @@
     <string name="nbr_messages">Number of messages</string>
     <string name="change_password">Change password</string>
     <string name="home">home</string>
+    <string name="Title_Subject_Field">Title</string>
+    <string name="Content_Field">Enter your message</string>
 </resources>
