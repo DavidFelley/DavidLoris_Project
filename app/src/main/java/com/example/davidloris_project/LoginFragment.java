@@ -19,8 +19,10 @@ import com.example.davidloris_project.Model.User;
 public class LoginFragment extends Fragment {
 
 
-    public EditText login;
-    public EditText password;
+
+
+   public EditText login;
+   public EditText password;
 
 
     @Nullable
@@ -29,17 +31,12 @@ public class LoginFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
-        login = v.findViewById(R.id.usernameField);
-        password = v.findViewById(R.id.passwordField);
+
 
         return v;
     }
 
-    public EditText getLogin() {
-        return login;
-    }
 
-    public EditText getPassword() {
-        return password;
-    }
+
+
 }

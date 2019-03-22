@@ -37,7 +37,7 @@ public class CategoryFragment extends Fragment {
         final SubjectAdapter adapter = new SubjectAdapter();
         recyclerView.setAdapter(adapter);
 
-        subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
+               subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
         subjectVM.getAllSubjects().observe(this, new Observer<List<Subject>>() {
             @Override
             public void onChanged(@Nullable List<Subject> subjects) {
