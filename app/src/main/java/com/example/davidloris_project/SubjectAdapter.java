@@ -47,7 +47,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectH
 
         public SubjectHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.text_view_titleSubject);
+            textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDate = itemView.findViewById(R.id.text_view_date);
         }
     }

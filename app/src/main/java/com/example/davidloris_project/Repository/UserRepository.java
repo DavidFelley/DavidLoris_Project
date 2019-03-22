@@ -5,14 +5,15 @@ import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.example.davidloris_project.Local.MyDatabase;
+import com.example.davidloris_project.Local.SubjectDAO;
 import com.example.davidloris_project.Local.UserDAO;
+import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.Model.User;
 
 import java.util.List;
 
 public class UserRepository {
     private UserDAO userDao;
-    private LiveData<List<User>> AllUser;
 
     public UserRepository(Application application){
         MyDatabase database = MyDatabase.getInstance(application);
@@ -20,16 +21,21 @@ public class UserRepository {
 
     }
 
-
-    public void insert (User user)
+    public User getUserLogin(String username, String password)
     {
-        //Au moment du sign in
+        User user = userDao.getUserLogin(username, password);
+
+
+        return user;
     }
 
-    public  LiveData<List<User>> getAllUser()
-    {
-        return AllUser;
+
+
+    public void insert(User user){
+        new UserRepository.InsertUserAsyncTask(userDao).execute(user);
     }
+
+
 
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void>
     {
@@ -44,4 +50,23 @@ public class UserRepository {
             return null;
         }
     }
+
+    private static class getUserLoginAsyncTask extends AsyncTask<User, Void, Void>
+    {
+        private UserDAO userDAO;
+
+        private getUserLoginAsyncTask(UserDAO userDAO){this.userDAO = userDAO;}
+
+        @Override
+        protected Void doInBackground(User... users) {
+
+           userDAO.getUserLogin(users[0].getUsername(), users[0].getPassword());
+            return null;
+        }
+
+
+    }
+
+
+
 }

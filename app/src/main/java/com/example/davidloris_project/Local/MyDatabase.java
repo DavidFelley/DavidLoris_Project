@@ -65,7 +65,7 @@ public abstract class MyDatabase extends RoomDatabase {
             subjectDao.insertSubject(new Subject("How to test a database 3 ?", "This is our first try with the room database.", "IT", date.format(Calendar.getInstance().getTime())));
             subjectDao.insertSubject(new Subject("How to test a database 4 ?", "This is our first try with the room database.", "IT", date.format(Calendar.getInstance().getTime())));
 
-            userDAO.insertUser(new User("Loris", "Clivaz"));
+
             return null;
         }
     }
