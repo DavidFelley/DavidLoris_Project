@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutInSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/text_view_title_subject_inMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="15dp"
+            android:text="Title of my subject"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:id="@+id/text_view_messageFromSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_title_subject_inMessage"
+            android:paddingBottom="15dp"
+            android:text="This is my message, let's see what it will look like in the application."
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/text_view_pseudoFromSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_messageFromSubject"
+            android:text="Pseudo"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+        <TextView
+            android:id="@+id/text_view_dateFromSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_messageFromSubject"
+            android:layout_alignParentRight="true"
+            android:text="Date"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+    </RelativeLayout>
+
+    <view
+        android:id="@+id/recycler_viewInSubject"
+        class="android.support.v7.widget.RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/message_item"
+        android:layout_below="@id/relativeLayoutInSubject"/>
+
+</android.widget.RelativeLayout>

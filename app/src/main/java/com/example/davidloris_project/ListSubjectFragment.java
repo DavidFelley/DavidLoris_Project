@@ -7,16 +7,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.davidloris_project.Adapter.SubjectAdapter;
 import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.ViewModel.SubjectVM;
 
@@ -24,20 +24,24 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
-public class CategoryFragment extends Fragment {
+public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
 
     private SubjectVM subjectVM;
-
-    private DateFormat date = new SimpleDateFormat("dd.mm.yyyy");
+    private String category;
+    private DateFormat date = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault());
     private String PostingDate = date.format(Calendar.getInstance().getTime());
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
-        final View categoryView = inflater.inflate(R.layout.fragment_category, container, false);
+        /* Get the category name for the query */
+        category = getArguments().getString("CategoryName");
+
+        final View categoryView = inflater.inflate(R.layout.fragment_listsubject, container, false);
 
         RecyclerView recyclerView = categoryView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -47,13 +51,16 @@ public class CategoryFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
-        subjectVM.getAllSubjects().observe(this, new Observer<List<Subject>>() {
+
+        /* Method that keep the fragment up to date whenever their is a new subject inserted */
+        subjectVM.getAllSubjectsFromCategory(category).observe(this, new Observer<List<Subject>>() {
             @Override
             public void onChanged(@Nullable List<Subject> subjects) {
                 adapter.setSubjects(subjects);
             }
         });
 
+        /* The button that open the addSubject activity */
         FloatingActionButton buttonAddSubject = categoryView.findViewById(R.id.button_add_subject);
         buttonAddSubject.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,21 +73,24 @@ public class CategoryFragment extends Fragment {
         return categoryView;
     }
 
+    /* This method create the insertion that the activity AddSubject send back*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        /* First if is when the user click on backButton */
+        if (data != null) {
+            if (requestCode == ADD_SUBJECT_REQUEST || resultCode == getActivity().RESULT_OK) {
+                String title = data.getStringExtra(AddSubjectActivity.EXTRA_TITLE);
+                String message = data.getStringExtra(AddSubjectActivity.EXTRA_MESSAGE);
 
-        if (requestCode == ADD_SUBJECT_REQUEST || resultCode == getActivity().RESULT_OK) {
-            String title = data.getStringExtra(AddSubjectActivity.EXTRA_TITLE);
-            String message = data.getStringExtra(AddSubjectActivity.EXTRA_MESSAGE);
+                Subject subject = new Subject(title, message, category, PostingDate);
 
-            Subject subject = new Subject(title, message, "Actuality", PostingDate);
+                subjectVM.insert(subject);
 
-            subjectVM.insert(subject);
-
-            Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getActivity(), "A wild problem appeared !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "A wild problem appeared !", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

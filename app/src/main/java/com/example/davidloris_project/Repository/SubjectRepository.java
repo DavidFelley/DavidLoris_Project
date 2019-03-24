@@ -12,20 +12,23 @@ import java.util.List;
 
 public class SubjectRepository {
     private SubjectDAO subjectDao;
-    private LiveData<List<Subject>> allSubjects;
+
 
     public SubjectRepository(Application application){
         MyDatabase database = MyDatabase.getInstance(application);
         subjectDao = database.subjectDAO();
-        allSubjects = subjectDao.getAllSubjects();
+    }
+
+    public LiveData<List<Subject>> getAllSubjectsFromCategory(String category){
+        return subjectDao.getAllSubjectsFromCategory(category);
+    }
+
+    public LiveData<List<Subject>> getAllSubjects(){
+        return subjectDao.getAllSubjects();
     }
 
     public void insert(Subject subject){
         new InsertSubjectAsyncTask(subjectDao).execute(subject);
-    }
-
-    public LiveData<List<Subject>> getAllSubjects(){
-        return allSubjects;
     }
 
     private static class InsertSubjectAsyncTask extends AsyncTask<Subject, Void, Void>{

@@ -12,11 +12,11 @@ import java.util.List;
 @Dao
 public interface SubjectDAO {
 
-    @Query("SELECT * FROM tabSubject ORDER BY date")
+    @Query("SELECT * FROM tabSubject ORDER BY date DESC")
     LiveData<List<Subject>> getAllSubjects();
 
-    @Query("SELECT * FROM tabSubject WHERE category=:category")
-    List<Subject> getAllSubjectFromCategory(String category);
+    @Query("SELECT * FROM tabSubject WHERE category=:category ORDER BY date DESC")
+    LiveData<List<Subject>> getAllSubjectsFromCategory(String category);
 
     @Insert
     void insertSubject(Subject subject);

@@ -12,15 +12,18 @@ import java.util.List;
 
 public class SubjectVM extends AndroidViewModel {
     private SubjectRepository repository;
-    private LiveData<List<Subject>>allSubjects;
 
     public SubjectVM(@NonNull Application application) {
         super(application);
         repository = new SubjectRepository(application);
-        allSubjects = repository.getAllSubjects();
     }
+
     public LiveData<List<Subject>> getAllSubjects(){
-        return allSubjects;
+        return repository.getAllSubjects();
+    }
+
+    public LiveData<List<Subject>> getAllSubjectsFromCategory(String category){
+        return repository.getAllSubjectsFromCategory(category);
     }
 
     public void insert (Subject subject){

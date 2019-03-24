@@ -16,6 +16,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     private EditText editTextTitle;
     private EditText editTextContent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,4 +64,5 @@ public class AddSubjectActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

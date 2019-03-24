@@ -10,7 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:background="@color/blackGray">
+        android:background="@color/blackGray"
+        android:clickable="true"
+        android:onClick="SubjectClick">
+
+        <TextView
+            android:id="@+id/text_view_idSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/text_view_title_subject"

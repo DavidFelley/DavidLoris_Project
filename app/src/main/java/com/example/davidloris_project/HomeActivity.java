@@ -1,10 +1,7 @@
 package com.example.davidloris_project;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,14 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
-import com.example.davidloris_project.Model.Subject;
-import com.example.davidloris_project.ViewModel.SubjectVM;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import android.widget.Button;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -87,6 +77,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void CategoryClick(View view) {
-        fm.beginTransaction().replace(R.id.fragment_container, new CategoryFragment()).commit();
+
+        /* Get the button name to know which category was clicked */
+        String categoryName = ((Button)view).getText().toString();
+        /* Pass the button name to the fragment to do the correct query and get the correct subjects */
+        Bundle bundle = new Bundle();
+        bundle.putString("CategoryName", categoryName);
+
+        ListSubjectFragment fragment = new ListSubjectFragment();
+        fragment.setArguments(bundle);
+
+        fm.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+    }
+
+    public void SubjectClick(View view){
+        fm.beginTransaction().replace(R.id.fragment_container, new InSubjectFragment()).commit();
     }
 }
