@@ -16,9 +16,18 @@ public class UserRepository {
 
     }
 
+
+    public User getUserByName(String username, String password)
+    {
+        return userDao.getUserByName(username, password);
+    }
+
+
     public void insert(User user){
         new UserRepository.InsertUserAsyncTask(userDao).execute(user);
     }
+
+
 
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void>
     {
@@ -34,33 +43,8 @@ public class UserRepository {
         }
     }
 
-    public User getUserLogin(String username, String password)
-    {
-
-        User user = new getUserLoginAsyncTask(userDao).doInBackground(username, password);
 
 
-        return user;
-    }
 
 
-    private static class getUserLoginAsyncTask extends AsyncTask<String, Void, User>
-    {
-
-        private UserDAO userDAO;
-
-
-        private getUserLoginAsyncTask(UserDAO userDAO){this.userDAO = userDAO;}
-
-
-        @Override
-        protected User doInBackground(String... strings) {
-
-            User user =  userDAO.getUserLogin(strings.toString(),strings.toString());
-
-
-            return user;
-        }
-
-    }
 }
