@@ -24,10 +24,10 @@ import com.example.davidloris_project.ViewModel.UserVM;
 public class LoginFragment extends Fragment {
 
     private UserVM userVM;
-    private EditText login;
-    private EditText password;
-    private String log;
-    private String pass;
+    private EditText editTextLogin;
+    private EditText editTextPassword;
+    private String username;
+    private String password;
     private View v;
 
 
@@ -38,27 +38,23 @@ public class LoginFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_login, container, false);
 
         userVM = ViewModelProviders.of(this).get(UserVM.class);
-        Button loginButton = v.findViewById(R.id.buttonLogin);
+
+        editTextLogin = v.findViewById(R.id.usernameField_login);
+        editTextPassword = v.findViewById(R.id.passwordField_login);
+
+        Button loginButton = v.findViewById(R.id.buttonLogin_login);
         loginButton.setOnClickListener(loginClick);
 
-        login = v.findViewById(R.id.usernameField_login);
-        password = v.findViewById(R.id.passwordField_login);
-
-        log = login.getText().toString();
-        pass = password.getText().toString();
-
+        Button signinButton = v.findViewById(R.id.buttonSignin_login);
+        signinButton.setOnClickListener(signInClick);
 
         return v;
     }
 
     View.OnClickListener loginClick = new View.OnClickListener() {
-
         @Override
         public void onClick(View v) {
-
-
-
-            if (controleLogin()) {
+            if (controlLogin()) {
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);
             } else {
@@ -67,16 +63,23 @@ public class LoginFragment extends Fragment {
         }
     };
 
-    public void goToSignIn() {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new SignInFragment()).commit();
-    }
-
-    public boolean controleLogin() {
-        User user = userVM.getUserByName(log, pass);
-
-        if (user != null) {
-            return true;
+    View.OnClickListener signInClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new SignInFragment()).commit();
         }
+    };
+
+    public boolean controlLogin() {
+        
+        username = editTextLogin.getText().toString();
+        password = editTextPassword.getText().toString();
+
+        User user = userVM.getUserByName(username, password);
+
+        if (user != null)
+            return true;
+
         return false;
     }
 

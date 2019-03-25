@@ -8,27 +8,20 @@ import android.support.annotation.NonNull;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.Repository.UserRepository;
 
-public class UserVM extends AndroidViewModel
-{
+public class UserVM extends AndroidViewModel {
     private UserRepository repository;
 
 
-    public UserVM (@NonNull Application application)
-    {
+    public UserVM(@NonNull Application application) {
         super(application);
         repository = new UserRepository(application);
-
-
     }
 
-    public User getUserByName(String username, String password)
-    {
-        return repository.getUserByName(username,password);
+    public User getUserByName(String username, String password) {
+        return repository.getUserLogin(username, password);
     }
 
-
-    public  void  insert (User user)
-    {
+    public void insert(User user) {
         repository.insert(user);
     }
 

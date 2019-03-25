@@ -1,6 +1,7 @@
 package com.example.davidloris_project;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,14 +20,13 @@ import com.example.davidloris_project.ViewModel.UserVM;
 
 public class SignInFragment extends Fragment {
 
-    private Button signin;
     private UserVM userVm;
-    private EditText username;
-    private EditText login;
-    private EditText confirmlog;
-    private String user;
-    private String log;
-    private String pass;
+    private EditText editTextUsername;
+    private EditText editTextPassword;
+    private EditText editTextConfirmPassword;
+    private String username;
+    private String password;
+    private String confirmPassword;
     private User userObject;
 
 
@@ -43,54 +43,55 @@ public class SignInFragment extends Fragment {
 
         userVm = ViewModelProviders.of(this).get(UserVM.class);
 
-        username = view.findViewById(R.id.usernameField);
-        login = view.findViewById(R.id.passwordConfirmField);
-        confirmlog = view.findViewById(R.id.passwordField);
+        editTextUsername = view.findViewById(R.id.usernameField);
+        editTextPassword = view.findViewById(R.id.passwordField);
+        editTextConfirmPassword = view.findViewById(R.id.passwordConfirmField);
 
-        signin = view.findViewById(R.id.buttonSignin);
+        Button signin = view.findViewById(R.id.buttonSignin);
+        signin.setOnClickListener(signInClick);
 
-        signin.setOnClickListener(myhandler);
-
+        Button backLogin = view.findViewById(R.id.buttonLogin);
+        backLogin.setOnClickListener(backLoginClick);
 
         return view;
     }
 
-    View.OnClickListener myhandler = new View.OnClickListener() {
-
+    View.OnClickListener signInClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            user = username.getText().toString();
-            log = login.getText().toString();
-            pass = confirmlog.getText().toString();
+            username = editTextUsername.getText().toString();
+            password = editTextPassword.getText().toString();
+            confirmPassword = editTextConfirmPassword.getText().toString();
 
-            Log.d("Username : ", user);
-            Log.d("Login : ", log);
-
-            userObject = new User(user, log);
-
-            if (userObject != null)
-            {
-                userVm.insert(userObject);
-
-
-                username.setText("");
-                login.setText("");
-                confirmlog.setText("");
-
-                Toast.makeText(getActivity(), "User insertion good !!!", Toast.LENGTH_SHORT).show();
-
-            }else
-            {
-                Toast.makeText(getActivity(), "probleme user insertion", Toast.LENGTH_SHORT).show();
-
+            /* Control if the fields are not empty */
+            if (username.trim().isEmpty() || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
+                Toast.makeText(getActivity(), "All fields must be completed", Toast.LENGTH_SHORT).show();
+                return;
             }
 
+            /* control if the user doesn't already exist */
 
+            /* control if the passwords match */
+            if (!password.equals(confirmPassword)) {
+                Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
+            userObject = new User(username, password);
+            userVm.insert(userObject);
 
+            Toast.makeText(getActivity(), "User registered", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
         }
     };
 
-
+    View.OnClickListener backLoginClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new LoginFragment()).commit();
+        }
+    };
 }
