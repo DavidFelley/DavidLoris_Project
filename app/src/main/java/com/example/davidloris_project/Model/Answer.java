@@ -13,11 +13,18 @@ public class Answer {
 
     private String textAnswer;
 
-    private String idAutor;
+    private int idAutor;
 
-    private String idSubject;
+    private int idSubject;
 
     private String date;
+
+    public Answer(String textAnswer, String date, int idAutor, int idSubject){
+        this.textAnswer = textAnswer;
+        this.date = date;
+        this.idAutor = idAutor;
+        this.idSubject = idSubject;
+    }
 
     public int getIdAnswer() {
         return idAnswer;
@@ -27,11 +34,11 @@ public class Answer {
         return textAnswer;
     }
 
-    public String getIdAutor() {
+    public int getIdAutor() {
         return idAutor;
     }
 
-    public String getIdSubject() {
+    public int getIdSubject() {
         return idSubject;
     }
 
@@ -47,11 +54,11 @@ public class Answer {
         this.textAnswer = textAnswer;
     }
 
-    public void setIdAutor(String idAutor) {
+    public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
 
-    public void setIdSubject(String idSubject) {
+    public void setIdSubject(int idSubject) {
         this.idSubject = idSubject;
     }
 

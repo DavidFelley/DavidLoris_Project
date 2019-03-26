@@ -13,7 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.davidloris_project.Fragment.AboutFragment;
 import com.example.davidloris_project.Fragment.AccountFragment;
 import com.example.davidloris_project.Fragment.InSubjectFragment;
 import com.example.davidloris_project.Fragment.ListCategoryFragment;
@@ -25,7 +27,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Fragment displayedFragment;
     private FragmentManager fm = getSupportFragmentManager();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void CategoryClick(View view) {
 
         /* Get the button name to know which category was clicked */
-        String categoryName = ((Button)view).getText().toString();
+        String categoryName = ((Button) view).getText().toString();
         /* Pass the button name to the fragment to do the correct query and get the correct subjects */
         Bundle bundle = new Bundle();
         bundle.putString("CategoryName", categoryName);
@@ -96,7 +97,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fm.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
-    public void SubjectClick(View view){
-        fm.beginTransaction().replace(R.id.fragment_container, new InSubjectFragment()).commit();
+    public void SubjectClick(View view) {
+
+        TextView textViewIdSubject = view.findViewById(R.id.text_view_idSubject);
+        int idSubject = Integer.parseInt(textViewIdSubject.getText().toString());
+        Bundle bundle = new Bundle();
+        bundle.putInt("idSubject", idSubject);
+
+        InSubjectFragment inSubjectFragment = new InSubjectFragment();
+        inSubjectFragment.setArguments(bundle);
+
+        fm.beginTransaction().replace(R.id.fragment_container, inSubjectFragment).commit();
     }
 }

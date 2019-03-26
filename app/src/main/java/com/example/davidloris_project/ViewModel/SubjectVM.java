@@ -18,17 +18,16 @@ public class SubjectVM extends AndroidViewModel {
         repository = new SubjectRepository(application);
     }
 
-    public LiveData<List<Subject>> getAllSubjects(){
-        return repository.getAllSubjects();
-    }
-
     public LiveData<List<Subject>> getAllSubjectsFromCategory(String category){
         return repository.getAllSubjectsFromCategory(category);
+    }
+
+    public LiveData<Subject> getSubjectById(int id){
+        return repository.getSubjectById(id);
     }
 
     public void insert (Subject subject){
         repository.insert(subject);
     }
-
 
 }

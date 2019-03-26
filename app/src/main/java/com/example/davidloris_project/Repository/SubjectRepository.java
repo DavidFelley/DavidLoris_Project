@@ -23,8 +23,8 @@ public class SubjectRepository {
         return subjectDao.getAllSubjectsFromCategory(category);
     }
 
-    public LiveData<List<Subject>> getAllSubjects(){
-        return subjectDao.getAllSubjects();
+    public LiveData<Subject> getSubjectById(int id){
+        return subjectDao.getSubjectById(id);
     }
 
     public void insert(Subject subject){

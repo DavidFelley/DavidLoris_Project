@@ -9,33 +9,42 @@
         android:background="@color/blackGray"
         android:clickable="true"
         android:onClick="SubjectClick"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_marginBottom="1dp">
+
+        <TextView
+            android:id="@+id/text_view_idMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_title_subject_inMessage"
+            android:paddingBottom="15dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/text_view_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This is my message, let's see what it will look like in the application."
             android:layout_below="@id/text_view_title_subject_inMessage"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:paddingBottom="15dp"/>
+            android:paddingBottom="15dp"
+            android:text="This is my message, let's see what it will look like in the application."
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:id="@+id/text_view_pseudoInMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pseudo"
             android:layout_below="@id/text_view_message"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+            android:text="Pseudo"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
         <TextView
             android:id="@+id/text_view_dateInMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date"
             android:layout_below="@id/text_view_message"
             android:layout_alignParentRight="true"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+            android:text="Date"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
     </RelativeLayout>
 

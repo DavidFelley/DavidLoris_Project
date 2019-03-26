@@ -22,11 +22,12 @@ public class Subject {
 
     private String date;
 
-    public Subject(String title, String textSubject, String category, String date){
+    public Subject(String title, String textSubject, String category, String date, int idAutor){
         this.title = title;
         this.textSubject = textSubject;
         this.category = category;
         this.date = date;
+        this.idAutor = idAutor;
     }
 
     public int getIdSubject() {

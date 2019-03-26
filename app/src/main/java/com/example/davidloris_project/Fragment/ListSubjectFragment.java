@@ -84,7 +84,8 @@ public class ListSubjectFragment extends Fragment {
                 String title = data.getStringExtra(AddSubjectActivity.EXTRA_TITLE);
                 String message = data.getStringExtra(AddSubjectActivity.EXTRA_MESSAGE);
 
-                Subject subject = new Subject(title, message, category, PostingDate);
+                /* CHANGER L'ID AUTOMATIQUE DE L'AUTEUR !!!!!!!!!!!!!!!! */
+                Subject subject = new Subject(title, message, category, PostingDate,1);
 
                 subjectVM.insert(subject);
 
