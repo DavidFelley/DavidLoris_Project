@@ -19,6 +19,9 @@ public interface UserDAO {
     @Query("SELECT * FROM tabUsers WHERE username=:username AND password=:password ")
     User getUserLogin(String username, String password);
 
+    @Query("SELECT * FROM tabUsers WHERE username=:username")
+    LiveData<User> getUserByUsername(String username);
+
     @Insert
     void insertUser(User user);
 }
