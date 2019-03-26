@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.Repository.UserRepository;
 
@@ -17,8 +18,8 @@ public class UserVM extends AndroidViewModel {
         repository = new UserRepository(application);
     }
 
-    public User getUserByName(String username, String password) {
-        return repository.getUserLogin(username, password);
+    public User getUserByName(String username, String password, AsyncTaskListener asyncTaskListener) {
+        return repository.getUserLogin(username, password, asyncTaskListener);
     }
 
     public void insert(User user) {

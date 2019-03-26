@@ -1,4 +1,4 @@
-package com.example.davidloris_project;
+package com.example.davidloris_project.Fragment;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -10,14 +10,15 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.davidloris_project.Adapter.SubjectAdapter;
+import com.example.davidloris_project.Activity.AddSubjectActivity;
 import com.example.davidloris_project.Model.Subject;
+import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.SubjectVM;
 
 import java.text.DateFormat;

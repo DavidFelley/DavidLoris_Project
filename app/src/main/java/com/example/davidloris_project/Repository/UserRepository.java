@@ -2,29 +2,24 @@ package com.example.davidloris_project.Repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Local.UserDAO;
 import com.example.davidloris_project.Model.User;
 
-import java.util.List;
-
 public class UserRepository {
 
     private UserDAO userDao;
-    private static User myUser;
 
     public UserRepository(Application application) {
         MyDatabase database = MyDatabase.getInstance(application);
         userDao = database.userDAO();
     }
 
-    public User getUserLogin(String username, String password){
-
-        new UserRepository.getUserLoginAsyncTask(userDao).execute(username,password);
-
-        return myUser;
+    public User getUserLogin(String username, String password, AsyncTaskListener listener) {
+        new UserRepository.getUserLoginAsyncTask(userDao, listener).execute(username, password);
+        return null;
     }
 
     public void insert(User user) {
@@ -47,29 +42,35 @@ public class UserRepository {
         }
     }
 
-    private static class getUserLoginAsyncTask extends AsyncTask<String, Void, User> {
+    private static class getUserLoginAsyncTask extends AsyncTask<String, Void, Void> {
         private UserDAO userDao;
+        private AsyncTaskListener listener;
+        private User user;
 
-        private getUserLoginAsyncTask(UserDAO userDao) {
+        private getUserLoginAsyncTask(UserDAO userDao, AsyncTaskListener listener) {
             this.userDao = userDao;
+            this.listener = listener;
         }
 
         @Override
-        protected User doInBackground(String... infos) {
+        protected Void doInBackground(String... infos) {
 
             String username = infos[0];
             String password = infos[1];
 
-            User user = userDao.getUserLogin(username, password);
+            user = userDao.getUserLogin(username, password);
 
-            return user;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(User user) {
-            super.onPostExecute(user);
+        protected void onPostExecute(Void aVoid) {
+            if (user == null) {
+                listener.onFailure();
+            } else {
+                listener.onSuccess();
+            }
 
-            myUser = user;
         }
     }
 

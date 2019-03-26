@@ -1,4 +1,4 @@
-package com.example.davidloris_project;
+package com.example.davidloris_project.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.davidloris_project.Fragment.AccountFragment;
+import com.example.davidloris_project.Fragment.InSubjectFragment;
+import com.example.davidloris_project.Fragment.ListCategoryFragment;
+import com.example.davidloris_project.Fragment.ListSubjectFragment;
+import com.example.davidloris_project.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

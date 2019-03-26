@@ -11,18 +11,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".AddSubjectActivity"
-            android:parentActivityName=".HomeActivity"
+            android:name=".Activity.AddSubjectActivity"
+            android:parentActivityName=".Activity.HomeActivity"
             android:theme="@style/MyStyle"/>
         <activity
-            android:name=".MainActivity">
+            android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"/>
+            android:name=".Activity.HomeActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.davidloris_project;
+package com.example.davidloris_project.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.davidloris_project.R;
 
 public class AddSubjectActivity extends AppCompatActivity {
 
