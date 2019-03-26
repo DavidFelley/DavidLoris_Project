@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_about:
-                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
                 break;
             case R.id.nav_account:
                 fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
