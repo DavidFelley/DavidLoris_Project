@@ -1,35 +1,20 @@
-package com.example.davidloris_project.Model;
+package com.example.davidloris_project.CompositeObjects;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+public class AnswerWithUsername {
 
-@Entity (tableName = "tabAnswer",foreignKeys = @ForeignKey(entity = User.class, parentColumns = "idUser", childColumns = "idAutor"),indices = {@Index("idAutor")})
-public class Answer {
-
-    @NonNull
-    @PrimaryKey(autoGenerate = true)
     private int idAnswer;
-
+    private String pseudo;
     private String textAnswer;
-
     private int idAutor;
-
     private int idSubject;
-
     private String date;
-
-    public Answer(String textAnswer, String date, int idAutor, int idSubject){
-        this.textAnswer = textAnswer;
-        this.date = date;
-        this.idAutor = idAutor;
-        this.idSubject = idSubject;
-    }
 
     public int getIdAnswer() {
         return idAnswer;
+    }
+
+    public String getPseudo() {
+        return pseudo;
     }
 
     public String getTextAnswer() {
@@ -50,6 +35,10 @@ public class Answer {
 
     public void setIdAnswer(int idAnswer) {
         this.idAnswer = idAnswer;
+    }
+
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public void setTextAnswer(String textAnswer) {

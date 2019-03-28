@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.Local.AnswerDAO;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Model.Answer;
@@ -18,7 +19,7 @@ public class AnswerRepository {
         answerDao = database.answerDAO();
     }
 
-    public LiveData<List<Answer>> getAllMessageFromSubject(int idSubject){
+    public LiveData<List<AnswerWithUsername>> getAllMessageFromSubject(int idSubject){
         return answerDao.getAllMessageFromSubject(idSubject);
     }
 

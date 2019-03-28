@@ -16,7 +16,6 @@
             android:id="@+id/text_view_idMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_title_subject_inMessage"
             android:paddingBottom="15dp"
             android:visibility="gone" />
 
@@ -24,7 +23,6 @@
             android:id="@+id/text_view_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_title_subject_inMessage"
             android:paddingBottom="15dp"
             android:text="This is my message, let's see what it will look like in the application."
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />

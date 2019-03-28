@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
 import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.Repository.SubjectRepository;
 
@@ -22,7 +23,7 @@ public class SubjectVM extends AndroidViewModel {
         return repository.getAllSubjectsFromCategory(category);
     }
 
-    public LiveData<Subject> getSubjectById(int id){
+    public LiveData<SubjectWithUserName> getSubjectById(int id){
         return repository.getSubjectById(id);
     }
 

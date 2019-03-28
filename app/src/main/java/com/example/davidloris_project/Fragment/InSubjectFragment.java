@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import com.example.davidloris_project.Activity.AddSubjectActivity;
 import com.example.davidloris_project.Adapter.MessageAdapter;
 import com.example.davidloris_project.Adapter.SubjectAdapter;
+import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
+import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
 import com.example.davidloris_project.Model.Answer;
 import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.R;
@@ -52,11 +54,20 @@ public class InSubjectFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         answerVM = ViewModelProviders.of(this).get(AnswerVM.class);
+        subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
+
+        /* AFFICHER LE SUJET ICI */
+        subjectVM.getSubjectById(idSubject).observe(this, new Observer<SubjectWithUserName>() {
+            @Override
+            public void onChanged(@Nullable SubjectWithUserName subjectWithUserName) {
+
+            }
+        });
 
         /* Method that keep the fragment up to date whenever their is a new subject inserted */
-        answerVM.getAllMessageFromSubject(idSubject).observe(this, new Observer<List<Answer>>() {
+        answerVM.getAllMessageFromSubject(idSubject).observe(this, new Observer<List<AnswerWithUsername>>() {
             @Override
-            public void onChanged(@Nullable List<Answer> messages) {
+            public void onChanged(@Nullable List<AnswerWithUsername> messages) {
                 adapter.setMessages(messages);
             }
         });

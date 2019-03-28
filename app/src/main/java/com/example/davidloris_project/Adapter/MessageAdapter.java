@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.davidloris_project.Model.Answer;
+import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.R;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder>{
-    private List<Answer> messages = new ArrayList<>();
+    private List<AnswerWithUsername> messages = new ArrayList<>();
 
     @NonNull
     @Override
@@ -25,11 +25,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageHolder messageHolder, int position) {
-        Answer currentMessage = messages.get(position);
-        messageHolder.textViewIdMessage.setText(String.valueOf(currentMessage.getIdAnswer()));
-        messageHolder.textViewMessageContent.setText(String.valueOf(currentMessage.getTextAnswer()));
-        messageHolder.textViewPseudo.setText(String.valueOf(currentMessage.getIdAutor()));
-        messageHolder.textViewDateMessage.setText(String.valueOf(currentMessage.getDate()));
+            AnswerWithUsername currentMessage = messages.get(position);
+            messageHolder.textViewIdMessage.setText(String.valueOf(currentMessage.getIdAnswer()));
+            messageHolder.textViewMessageContent.setText(currentMessage.getTextAnswer());
+            messageHolder.textViewPseudo.setText(currentMessage.getPseudo());
+            messageHolder.textViewDateMessage.setText(currentMessage.getDate());
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         return messages.size();
     }
 
-    public void setMessages(List<Answer> messages) {
+    public void setMessages(List<AnswerWithUsername> messages) {
         this.messages = messages;
         notifyDataSetChanged();
     }

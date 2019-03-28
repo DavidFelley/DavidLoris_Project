@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.Model.Answer;
 import com.example.davidloris_project.Repository.AnswerRepository;
 
@@ -18,7 +19,7 @@ public class AnswerVM extends AndroidViewModel {
         repository = new AnswerRepository(application);
     }
 
-    public LiveData<List<Answer>> getAllMessageFromSubject(int idSubject){
+    public LiveData<List<AnswerWithUsername>> getAllMessageFromSubject(int idSubject){
         return repository.getAllMessageFromSubject(idSubject);
     }
 }

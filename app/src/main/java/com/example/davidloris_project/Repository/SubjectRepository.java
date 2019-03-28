@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Local.SubjectDAO;
 import com.example.davidloris_project.Model.Subject;
@@ -23,7 +24,7 @@ public class SubjectRepository {
         return subjectDao.getAllSubjectsFromCategory(category);
     }
 
-    public LiveData<Subject> getSubjectById(int id){
+    public LiveData<SubjectWithUserName> getSubjectById(int id){
         return subjectDao.getSubjectById(id);
     }
 
