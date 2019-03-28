@@ -22,8 +22,26 @@ public class UserVM extends AndroidViewModel {
         return repository.getUserLogin(username, password, asyncTaskListener);
     }
 
+
+
+    public AsyncTask<String, Void, User> getUserByusername(String username)
+    {
+        AsyncTask<String, Void, User> user = repository.getUserByUsername(username);
+
+        return user;
+    }
+
     public void insert(User user) {
         repository.insert(user);
     }
+
+    public void updateUserPasswd(String username, String password)
+    {
+
+        repository.update(username, password);
+    }
+
+
+
 
 }

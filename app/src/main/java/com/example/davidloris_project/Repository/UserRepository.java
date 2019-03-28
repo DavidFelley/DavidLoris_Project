@@ -22,10 +22,42 @@ public class UserRepository {
         return null;
     }
 
+    public AsyncTask<String, Void, User> getUserByUsername(String username)
+    {
+       AsyncTask<String, Void, User> user = new getUserByUsername(userDao).execute(username);
+        return user;
+    }
+
+
+
+
     public void insert(User user) {
         new UserRepository.InsertUserAsyncTask(userDao).execute(user);
     }
 
+    public void update(String username, String password) {
+        new UserRepository.updateUserPasswd(userDao).execute(username, password);
+    }
+
+    private static class updateUserPasswd extends AsyncTask<String, Void, Void>
+    {
+        private UserDAO userDAO;
+
+        private updateUserPasswd (UserDAO userDAO)
+        {
+            this.userDAO = userDAO;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+
+            String username = strings[0];
+            String password = strings[1];
+
+            userDAO.updatePasswd(username,password);
+            return null;
+        }
+    }
 
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDAO userDAO;
@@ -39,6 +71,26 @@ public class UserRepository {
 
             userDAO.insertUser(users[0]);
             return null;
+        }
+    }
+
+    private static class getUserByUsername extends AsyncTask<String, Void, User>
+    {
+        private UserDAO userDAO;
+
+        private User user;
+
+        private getUserByUsername(UserDAO userDAO)
+        {
+            this.userDAO = userDAO;
+        }
+
+        @Override
+        protected User doInBackground(String... strings) {
+            String username = strings[0];
+
+            user = userDAO.getUserByUsername(username);
+            return user;
         }
     }
 
@@ -62,6 +114,9 @@ public class UserRepository {
 
             return null;
         }
+
+
+
 
         @Override
         protected void onPostExecute(Void aVoid) {

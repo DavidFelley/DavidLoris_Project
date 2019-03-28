@@ -11,6 +11,7 @@ import com.example.davidloris_project.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private FragmentManager fm = getSupportFragmentManager();
     public static MyDatabase myDatabase;
 
