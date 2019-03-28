@@ -60,13 +60,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_about:
-                fm.beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AboutFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_account:
-                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).addToBackStack(null).commit();
                 break;
             case R.id.nav_recentPost:
-                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new AccountFragment()).addToBackStack(null).commit();
                 break;
         }
 
@@ -95,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         ListSubjectFragment fragment = new ListSubjectFragment();
         fragment.setArguments(bundle);
 
-        fm.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        fm.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
     }
 
     public void SubjectClick(View view) {

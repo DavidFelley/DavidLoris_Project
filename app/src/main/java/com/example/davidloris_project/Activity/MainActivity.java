@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         myDatabase = Room.databaseBuilder(getApplicationContext(), MyDatabase.class, "tabUser").allowMainThreadQueries().build();
 
         if (savedInstanceState == null) {
             fm.beginTransaction().replace(R.id.login_container, new LoginFragment()).commit();
         }
     }
+
+
 /*
     public void Login(View view) {
 

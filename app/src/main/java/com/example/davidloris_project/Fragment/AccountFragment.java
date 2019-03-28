@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class AccountFragment extends Fragment {
         changePasswd.setOnClickListener(changePasswdClick);
 
         return v;
+
     }
 
     View.OnClickListener changePasswdClick = new View.OnClickListener() {
@@ -84,7 +86,8 @@ public class AccountFragment extends Fragment {
             @Override
             public void onSuccess() {
 
-                // faire methode qui va update dans la base de donnée le noueau mot de passe
+                // faire methode qui va update dans la base de donnée le nouveau mot de passe
+
 
                 if (newPasswd.equals(confirmPassword))
                 {
@@ -104,4 +107,6 @@ public class AccountFragment extends Fragment {
 
 
     }
+
+
 }
