@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
 
 public class SignInFragment extends Fragment {
+
 
     private UserVM userVm;
     private EditText editTextUsername;
@@ -43,6 +46,7 @@ public class SignInFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_signin, container, false);
+
 
         userVm = ViewModelProviders.of(this).get(UserVM.class);
 
@@ -90,8 +94,13 @@ public class SignInFragment extends Fragment {
 
             Toast.makeText(getActivity(), "User registered", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
-            startActivity(intent);
+            FragmentManager f = getFragmentManager();
+            FragmentTransaction t = f.beginTransaction();
+            Fragment frag = new LoginFragment();
+            t.replace(R.id.login_container,frag);
+            t.commit();
+
+
         }
     };
 

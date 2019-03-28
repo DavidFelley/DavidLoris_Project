@@ -1,6 +1,7 @@
 package com.example.davidloris_project.Fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
@@ -29,8 +31,10 @@ public class AccountFragment extends Fragment {
     private TextView textUsername;
     private EditText editTextOldPasswd;
     private EditText editTextNewPasswd;
+    private EditText editTextConfirmPasswd;
     private String oldPasswd;
     private String newPasswd;
+    private String confirmPassword;
 
 
 
@@ -42,6 +46,7 @@ public class AccountFragment extends Fragment {
 
         editTextNewPasswd = v.findViewById(R.id.newPassword);
         editTextOldPasswd = v.findViewById(R.id.ancienPassword);
+        editTextConfirmPasswd = v.findViewById(R.id.confirmPassword);
         textUsername = v.findViewById(R.id.nameUser);
 
         //On récupère le login du user
@@ -51,6 +56,7 @@ public class AccountFragment extends Fragment {
 
         Button changePasswd = v.findViewById(R.id.btn_changePwd);
         changePasswd.setOnClickListener(changePasswdClick);
+
         return v;
     }
 
@@ -65,7 +71,7 @@ public class AccountFragment extends Fragment {
 
         newPasswd = editTextNewPasswd.getText().toString();
         oldPasswd = editTextOldPasswd.getText().toString();
-
+        confirmPassword = editTextConfirmPasswd.getText().toString();
 
        // faire methode du controle de l ancien mot de passe
 
@@ -79,8 +85,17 @@ public class AccountFragment extends Fragment {
             public void onSuccess() {
 
                 // faire methode qui va update dans la base de donnée le noueau mot de passe
-                userVM.updateUserPasswd(nameUser, newPasswd);
-                Toast.makeText(getActivity(), "password change", Toast.LENGTH_SHORT).show();
+
+                if (newPasswd.equals(confirmPassword))
+                {
+                    userVM.updateUserPasswd(nameUser, newPasswd);
+                    Toast.makeText(getActivity(), "password change", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                }
+
+                Toast.makeText(getActivity(), "New password incorrect", Toast.LENGTH_SHORT).show();
 
 
 
