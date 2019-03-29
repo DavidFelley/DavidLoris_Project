@@ -20,14 +20,17 @@ public class SubjectRepository {
         subjectDao = database.subjectDAO();
     }
 
+    //Get all subjects from category
     public LiveData<List<Subject>> getAllSubjectsFromCategory(String category){
         return subjectDao.getAllSubjectsFromCategory(category);
     }
 
+    //Get all subjects by id
     public LiveData<SubjectWithUserName> getSubjectById(int id){
         return subjectDao.getSubjectById(id);
     }
 
+    //Insertion subject
     public void insert(Subject subject){
         new InsertSubjectAsyncTask(subjectDao).execute(subject);
     }

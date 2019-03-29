@@ -19,10 +19,12 @@ public class AnswerRepository {
         answerDao = database.answerDAO();
     }
 
+    //Get all messages from the subject
     public LiveData<List<AnswerWithUsername>> getAllMessageFromSubject(int idSubject){
         return answerDao.getAllMessageFromSubject(idSubject);
     }
 
+    //The insertion for the answer
     public void insert(Answer answer){
         new InsertAnswerAsyncTask(answerDao).execute(answer);
     }
@@ -38,6 +40,27 @@ public class AnswerRepository {
         @Override
         protected Void doInBackground(Answer... answers) {
             answerDao.insertAnswer(answers[0]);
+            return null;
+        }
+    }
+
+    //The insertion for the answer
+    public void delete(int i){
+        new DeleteAsyncTask(answerDao).execute(i);
+    }
+
+    private static class DeleteAsyncTask extends AsyncTask<Integer, Void, Void> {
+
+        private AnswerDAO answerDao;
+
+        private DeleteAsyncTask(AnswerDAO answerDao){
+            this.answerDao = answerDao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            answerDao.delete(integers[0]);
             return null;
         }
     }

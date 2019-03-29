@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm = getSupportFragmentManager();
     public static MyDatabase myDatabase;
 
+    //we build the database and allow queries
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

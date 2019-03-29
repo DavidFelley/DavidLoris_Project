@@ -12,7 +12,12 @@ import com.example.davidloris_project.Repository.SubjectRepository;
 import java.util.List;
 
 public class SubjectVM extends AndroidViewModel {
+
+    //View model to get the methode
+
+
     private SubjectRepository repository;
+
 
     public SubjectVM(@NonNull Application application) {
         super(application);

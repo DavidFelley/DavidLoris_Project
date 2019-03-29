@@ -35,10 +35,11 @@ public class LoginFragment extends Fragment {
     private String password;
     private View v;
 
-    static String MY_PREFS_NAME ;
+    public static String MY_PREFS_NAME ;
     static int DEFAULT_ID;
 
 
+    //We create the view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,12 +48,15 @@ public class LoginFragment extends Fragment {
 
         userVM = ViewModelProviders.of(this).get(UserVM.class);
 
+        //Get the informations about the login
         editTextLogin = v.findViewById(R.id.usernameField_login);
         editTextPassword = v.findViewById(R.id.passwordField_login);
 
+        //Instancied the login button
         Button loginButton = v.findViewById(R.id.buttonLogin_login);
         loginButton.setOnClickListener(loginClick);
 
+        //Instancied the signin button
         Button signinButton = v.findViewById(R.id.buttonSignin_login);
         signinButton.setOnClickListener(signInClick);
 
@@ -77,7 +81,10 @@ public class LoginFragment extends Fragment {
     };
 
 
+    //We controle the login
     public void controlLogin() {
+
+        //All the informations that we need
 
         username = editTextLogin.getText().toString();
         password = editTextPassword.getText().toString();

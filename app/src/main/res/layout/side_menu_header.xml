@@ -16,6 +16,7 @@
 
     <!-- Element for the pseudo -->
     <TextView
+        android:id="@+id/Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
@@ -23,9 +24,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <!-- Element for the mail -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="email@gmail.com" />
 
 </LinearLayout>

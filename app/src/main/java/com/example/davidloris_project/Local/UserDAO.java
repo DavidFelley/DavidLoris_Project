@@ -15,6 +15,8 @@ import java.util.List;
 @Dao
 public interface UserDAO {
 
+    //All queries for the database
+
     @Query("SELECT * FROM tabUsers WHERE username=:username AND password=:password ")
     User getUserLogin(String username, String password);
 

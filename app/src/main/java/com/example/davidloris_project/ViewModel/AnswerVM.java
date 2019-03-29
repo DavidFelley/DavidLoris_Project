@@ -12,7 +12,12 @@ import com.example.davidloris_project.Repository.AnswerRepository;
 import java.util.List;
 
 public class AnswerVM extends AndroidViewModel {
+
+    //View model to get the methode
+
+
     private AnswerRepository repository;
+
 
     public AnswerVM(@NonNull Application application) {
         super(application);
@@ -26,4 +31,6 @@ public class AnswerVM extends AndroidViewModel {
     public void insert (Answer answer){
         repository.insert(answer);
     }
+
+    public void delete (int idAnswer) {repository.delete(idAnswer);}
 }

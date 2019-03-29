@@ -29,6 +29,7 @@ public class AddAnswerActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("New Answer");
+
     }
 
     private void saveAnswer() {
@@ -44,6 +45,8 @@ public class AddAnswerActivity extends AppCompatActivity {
         setResult(RESULT_OK, data);
         finish();
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

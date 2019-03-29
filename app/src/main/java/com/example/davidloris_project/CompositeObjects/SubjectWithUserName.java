@@ -2,6 +2,7 @@ package com.example.davidloris_project.CompositeObjects;
 
 public class SubjectWithUserName {
 
+    //All getter and setters
     private int idSubject;
 
     private String pseudo;

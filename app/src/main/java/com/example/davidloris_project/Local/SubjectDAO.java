@@ -13,6 +13,8 @@ import java.util.List;
 @Dao
 public interface SubjectDAO {
 
+    //All queries for the database
+
     @Query("SELECT * FROM tabSubject WHERE category=:category ORDER BY date DESC")
     LiveData<List<Subject>> getAllSubjectsFromCategory(String category);
 

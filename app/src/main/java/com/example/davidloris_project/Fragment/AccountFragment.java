@@ -26,6 +26,7 @@ import static com.example.davidloris_project.Fragment.LoginFragment.MY_PREFS_NAM
 
 public class AccountFragment extends Fragment {
 
+
     private View v;
     private UserVM userVM;
     private String username;
@@ -38,12 +39,14 @@ public class AccountFragment extends Fragment {
     private String confirmPassword;
 
 
+    //We create the view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_account, container, false);
         userVM = ViewModelProviders.of(this).get(UserVM.class);
 
+        //We get the informations
         editTextNewPasswd = v.findViewById(R.id.newPassword);
         editTextOldPasswd = v.findViewById(R.id.ancienPassword);
         editTextConfirmPasswd = v.findViewById(R.id.confirmPassword);
@@ -53,6 +56,8 @@ public class AccountFragment extends Fragment {
         textUsername.setText(MY_PREFS_NAME);
 
 
+
+        //We instanciate the click of the button
         Button changePasswd = v.findViewById(R.id.btn_changePwd);
         changePasswd.setOnClickListener(changePasswdClick);
 
@@ -67,11 +72,13 @@ public class AccountFragment extends Fragment {
         }
     };
 
+    //We check the UserPass
     public void controleUserPass() {
 
         oldPasswd = editTextOldPasswd.getText().toString();
         newPasswd = editTextNewPasswd.getText().toString();
         confirmPassword = editTextConfirmPasswd.getText().toString();
+        username = textUsername.getText().toString();
 
         userVM.getUserLogin(username, oldPasswd, new AsyncTaskListener() {
 
@@ -89,9 +96,12 @@ public class AccountFragment extends Fragment {
 
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
+                }else
+                {
+                    Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+
                 }
 
-                Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
             }
         });
 

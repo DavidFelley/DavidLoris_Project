@@ -8,8 +8,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,15 +41,19 @@ public class InSubjectFragment extends Fragment {
     private SubjectVM subjectVM;
     private AnswerVM answerVM;
     private int idSubject;
+    private int idAnswer;
     private DateFormat date = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault());
 
 
+
+    //we create the view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         /* Get the id of the subject that was clicked in the last fragment */
         idSubject = getArguments().getInt("idSubject");
+
 
         final View inSubjectView = inflater.inflate(R.layout.fragment_insubject, container, false);
 
@@ -62,6 +68,8 @@ public class InSubjectFragment extends Fragment {
 
         final MessageAdapter adapter = new MessageAdapter();
         recyclerView.setAdapter(adapter);
+
+
 
         answerVM = ViewModelProviders.of(this).get(AnswerVM.class);
         subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
@@ -92,11 +100,19 @@ public class InSubjectFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddAnswerActivity.class);
                 startActivityForResult(intent, ADD_ANSWER_REQUEST);
+
+
             }
         });
 
+
+
+
+
         return inSubjectView;
     }
+
+
 
     /* This method create the insertion that the activity AddAnswer send back*/
     @Override
@@ -117,5 +133,10 @@ public class InSubjectFragment extends Fragment {
                 Toast.makeText(getActivity(), "A wild problem appeared !", Toast.LENGTH_SHORT).show();
             }
         }
+
+
+
     }
+
+
 }

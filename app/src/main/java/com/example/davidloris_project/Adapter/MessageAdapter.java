@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
+import com.example.davidloris_project.Model.Answer;
 import com.example.davidloris_project.R;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder>{
+
+    //the list of all answer
     private List<AnswerWithUsername> messages = new ArrayList<>();
 
+
+    //Create the view
     @NonNull
     @Override
     public MessageAdapter.MessageHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -22,6 +27,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
                 .inflate(R.layout.message_item, parent, false);
         return new MessageHolder(itemView);
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageHolder messageHolder, int position) {
@@ -32,6 +39,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
             messageHolder.textViewDateMessage.setText(currentMessage.getDate());
     }
 
+    //we get the answer with the username
+    public AnswerWithUsername getAnswer(int position)
+    {
+        return messages.get(position);
+    }
+
+    //we get the size of the arraylist
     @Override
     public int getItemCount() {
         return messages.size();
@@ -42,6 +56,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         notifyDataSetChanged();
     }
 
+    //we create the class messageHolder
     class MessageHolder extends RecyclerView.ViewHolder {
         private TextView textViewIdMessage;
         private TextView textViewMessageContent;
@@ -49,6 +64,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         private TextView textViewDateMessage;
 
 
+        //constructor
         public MessageHolder(@NonNull View itemView) {
             super(itemView);
             textViewIdMessage = itemView.findViewById(R.id.text_view_idMessage);
@@ -56,5 +72,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
             textViewPseudo = itemView.findViewById(R.id.text_view_pseudoInMessage);
             textViewDateMessage = itemView.findViewById(R.id.text_view_dateInMessage);
         }
+
+
     }
 }

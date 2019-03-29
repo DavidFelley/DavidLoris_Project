@@ -12,6 +12,8 @@ import com.example.davidloris_project.R;
 
 public class AboutFragment extends Fragment
 {
+
+    //We create the about fragment (just some text)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

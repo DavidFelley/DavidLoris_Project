@@ -12,6 +12,7 @@ import com.example.davidloris_project.R;
 
 public class ListCategoryFragment extends Fragment {
 
+    //All categories that we use
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -40,6 +40,7 @@ public class SignInFragment extends Fragment {
 
     }
 
+    //We create the view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,13 +51,16 @@ public class SignInFragment extends Fragment {
 
         userVm = ViewModelProviders.of(this).get(UserVM.class);
 
+        //All the informations about the signin
         editTextUsername = view.findViewById(R.id.usernameField);
         editTextPassword = view.findViewById(R.id.passwordField);
         editTextConfirmPassword = view.findViewById(R.id.passwordConfirmField);
 
+        //We instancied the signin button
         Button signin = view.findViewById(R.id.buttonSignin);
         signin.setOnClickListener(signInClick);
 
+        //We instancied the backlogin button
         Button backLogin = view.findViewById(R.id.buttonLogin);
         backLogin.setOnClickListener(backLoginClick);
 
@@ -67,6 +71,7 @@ public class SignInFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
+            //All the informations that we need
             username = editTextUsername.getText().toString();
             password = editTextPassword.getText().toString();
             confirmPassword = editTextConfirmPassword.getText().toString();

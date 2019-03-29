@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 @Entity(tableName = "tabUsers")
 public class User {
 
+    //The model with getters and setters
+
     @NonNull
     @PrimaryKey(autoGenerate = true)
     private int idUser;

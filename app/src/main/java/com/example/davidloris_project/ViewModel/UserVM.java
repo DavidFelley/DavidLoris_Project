@@ -10,6 +10,10 @@ import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.Repository.UserRepository;
 
 public class UserVM extends AndroidViewModel {
+
+    //View model to get the methode
+
+
     private UserRepository repository;
 
 

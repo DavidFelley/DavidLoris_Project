@@ -11,6 +11,8 @@ import android.support.annotation.NonNull;
 @Entity (tableName = "tabSubject",foreignKeys = @ForeignKey(entity = User.class, parentColumns = "idUser", childColumns = "idAutor"),indices = {@Index("idAutor")})
 public class Subject {
 
+    //The model with getters and setters
+
     @NonNull
     @PrimaryKey(autoGenerate = true)
     private int idSubject;

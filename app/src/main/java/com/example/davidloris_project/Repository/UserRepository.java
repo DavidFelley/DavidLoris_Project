@@ -17,11 +17,13 @@ public class UserRepository {
         userDao = database.userDAO();
     }
 
+    //Get the use log
     public User getUserLogin(String username, String password, AsyncTaskListener listener) {
         new UserRepository.getUserLoginAsyncTask(userDao, listener).execute(username, password);
         return null;
     }
 
+    //Get user by username
     public AsyncTask<String, Void, User> getUserByUsername(String username) {
         AsyncTask<String, Void, User> user = new getUserByUsername(userDao).execute(username);
         return user;
@@ -35,6 +37,7 @@ public class UserRepository {
         new UserRepository.updateUserPasswd(userDao).execute(username, password);
     }
 
+    //Update the use in the database
     private static class updateUserPasswd extends AsyncTask<String, Void, Void> {
         private UserDAO userDAO;
 
@@ -53,6 +56,7 @@ public class UserRepository {
         }
     }
 
+    //Insertion of a user
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDAO userDAO;
 
