@@ -27,13 +27,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.davidloris_project.Fragment.LoginFragment.DEFAULT_ID;
+
 public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
 
     private SubjectVM subjectVM;
     private String category;
     private DateFormat date = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault());
-    private String PostingDate = date.format(Calendar.getInstance().getTime());
 
     @Nullable
     @Override
@@ -84,8 +85,9 @@ public class ListSubjectFragment extends Fragment {
                 String title = data.getStringExtra(AddSubjectActivity.EXTRA_TITLE);
                 String message = data.getStringExtra(AddSubjectActivity.EXTRA_MESSAGE);
 
-                /* CHANGER L'ID AUTOMATIQUE DE L'AUTEUR !!!!!!!!!!!!!!!! */
-                Subject subject = new Subject(title, message, category, PostingDate,1);
+                String PostingDate = date.format(Calendar.getInstance().getTime());
+
+                Subject subject = new Subject(title, message, category, PostingDate,DEFAULT_ID);
 
                 subjectVM.insert(subject);
 

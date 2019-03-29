@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-@Database(entities = {User.class, Subject.class, Answer.class}, version = 1)
+@Database(entities = {User.class, Subject.class, Answer.class}, version = 1, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     private static MyDatabase instance;

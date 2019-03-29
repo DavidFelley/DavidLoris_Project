@@ -22,14 +22,10 @@ public class UserRepository {
         return null;
     }
 
-    public AsyncTask<String, Void, User> getUserByUsername(String username)
-    {
-       AsyncTask<String, Void, User> user = new getUserByUsername(userDao).execute(username);
+    public AsyncTask<String, Void, User> getUserByUsername(String username) {
+        AsyncTask<String, Void, User> user = new getUserByUsername(userDao).execute(username);
         return user;
     }
-
-
-
 
     public void insert(User user) {
         new UserRepository.InsertUserAsyncTask(userDao).execute(user);
@@ -39,12 +35,10 @@ public class UserRepository {
         new UserRepository.updateUserPasswd(userDao).execute(username, password);
     }
 
-    private static class updateUserPasswd extends AsyncTask<String, Void, Void>
-    {
+    private static class updateUserPasswd extends AsyncTask<String, Void, Void> {
         private UserDAO userDAO;
 
-        private updateUserPasswd (UserDAO userDAO)
-        {
+        private updateUserPasswd(UserDAO userDAO) {
             this.userDAO = userDAO;
         }
 
@@ -54,7 +48,7 @@ public class UserRepository {
             String username = strings[0];
             String password = strings[1];
 
-            userDAO.updatePasswd(username,password);
+            userDAO.updatePasswd(username, password);
             return null;
         }
     }
@@ -74,14 +68,12 @@ public class UserRepository {
         }
     }
 
-    private static class getUserByUsername extends AsyncTask<String, Void, User>
-    {
+    private static class getUserByUsername extends AsyncTask<String, Void, User> {
         private UserDAO userDAO;
 
         private User user;
 
-        private getUserByUsername(UserDAO userDAO)
-        {
+        private getUserByUsername(UserDAO userDAO) {
             this.userDAO = userDAO;
         }
 
@@ -115,19 +107,13 @@ public class UserRepository {
             return null;
         }
 
-
-
-
         @Override
         protected void onPostExecute(Void aVoid) {
             if (user == null) {
                 listener.onFailure();
             } else {
-                listener.onSuccess();
+                listener.onSuccess(user);
             }
-
         }
     }
-
-
 }

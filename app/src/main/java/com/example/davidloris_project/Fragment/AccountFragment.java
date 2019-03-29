@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.AsyncTaskListener;
+import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
 
@@ -28,7 +28,7 @@ public class AccountFragment extends Fragment {
 
     private View v;
     private UserVM userVM;
-    private String nameUser;
+    private String username;
     private TextView textUsername;
     private EditText editTextOldPasswd;
     private EditText editTextNewPasswd;
@@ -36,7 +36,6 @@ public class AccountFragment extends Fragment {
     private String oldPasswd;
     private String newPasswd;
     private String confirmPassword;
-
 
 
     @Nullable
@@ -51,9 +50,8 @@ public class AccountFragment extends Fragment {
         textUsername = v.findViewById(R.id.nameUser);
 
         //On récupère le login du user
-        SharedPreferences prefs = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        nameUser = prefs.getString("MY_PREFS_NAME",MY_PREFS_NAME);
-        textUsername.setText(nameUser);
+        textUsername.setText(MY_PREFS_NAME);
+
 
         Button changePasswd = v.findViewById(R.id.btn_changePwd);
         changePasswd.setOnClickListener(changePasswdClick);
@@ -71,37 +69,29 @@ public class AccountFragment extends Fragment {
 
     public void controleUserPass() {
 
-        newPasswd = editTextNewPasswd.getText().toString();
         oldPasswd = editTextOldPasswd.getText().toString();
+        newPasswd = editTextNewPasswd.getText().toString();
         confirmPassword = editTextConfirmPasswd.getText().toString();
 
-       // faire methode du controle de l ancien mot de passe
+        userVM.getUserLogin(username, oldPasswd, new AsyncTaskListener() {
 
-        userVM.getUserByName(nameUser, oldPasswd, new AsyncTaskListener() {
             @Override
             public void onFailure() {
-                Toast.makeText(getActivity(), "oldPassword incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Old password incorrect", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onSuccess() {
+            public void onSuccess(User user) {
 
-                // faire methode qui va update dans la base de donnée le nouveau mot de passe
-
-
-                if (newPasswd.equals(confirmPassword))
-                {
-                    userVM.updateUserPasswd(nameUser, newPasswd);
-                    Toast.makeText(getActivity(), "password change", Toast.LENGTH_SHORT).show();
+                if (newPasswd.equals(confirmPassword)) {
+                    userVM.updateUserPasswd(username, newPasswd);
+                    Toast.makeText(getActivity(), "password changed", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                 }
 
-                Toast.makeText(getActivity(), "New password incorrect", Toast.LENGTH_SHORT).show();
-
-
-
+                Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
             }
         });
 

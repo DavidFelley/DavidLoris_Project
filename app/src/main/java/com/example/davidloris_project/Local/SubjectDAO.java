@@ -16,7 +16,7 @@ public interface SubjectDAO {
     @Query("SELECT * FROM tabSubject WHERE category=:category ORDER BY date DESC")
     LiveData<List<Subject>> getAllSubjectsFromCategory(String category);
 
-    @Query("SELECT idSubject, username as pseudo, textSubject, idAutor, date FROM tabSubject tA, tabUsers tU WHERE idSubject=:idSubject AND tA.idAutor = tU.idUser ORDER BY date")
+    @Query("SELECT idSubject, title, username as pseudo, textSubject, idAutor, date FROM tabSubject tA, tabUsers tU WHERE idSubject=:idSubject AND tA.idAutor = tU.idUser ORDER BY date")
     LiveData<SubjectWithUserName> getSubjectById(int idSubject);
 
     @Insert

@@ -1,7 +1,6 @@
 package com.example.davidloris_project.Fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,16 +8,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Activity.HomeActivity;
+import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
 
@@ -27,6 +27,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class LoginFragment extends Fragment {
 
+
     private UserVM userVM;
     private EditText editTextLogin;
     private EditText editTextPassword;
@@ -34,8 +35,8 @@ public class LoginFragment extends Fragment {
     private String password;
     private View v;
 
-    static SharedPreferences.Editor editor;
-    static String MY_PREFS_NAME = "TestName";
+    static String MY_PREFS_NAME ;
+    static int DEFAULT_ID;
 
 
     @Nullable
@@ -76,26 +77,24 @@ public class LoginFragment extends Fragment {
     };
 
 
-
     public void controlLogin() {
-
 
         username = editTextLogin.getText().toString();
         password = editTextPassword.getText().toString();
         MY_PREFS_NAME = editTextLogin.getText().toString();
 
-        userVM.getUserByName(username, password, new AsyncTaskListener() {
+        userVM.getUserLogin(username, password, new AsyncTaskListener() {
             @Override
             public void onFailure() {
                 Toast.makeText(getActivity(), "User or password incorrect", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onSuccess() {
+            public void onSuccess(User user) {
 
-                editor = getContext().getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString(MY_PREFS_NAME, username);
-                editor.apply();
+                DEFAULT_ID = user.getIdUser();
+
+                Log.i("***** AFFICHE ID ******",Integer.toString(DEFAULT_ID));
 
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);

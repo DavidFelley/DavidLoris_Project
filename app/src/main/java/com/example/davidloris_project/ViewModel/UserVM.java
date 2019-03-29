@@ -18,14 +18,11 @@ public class UserVM extends AndroidViewModel {
         repository = new UserRepository(application);
     }
 
-    public User getUserByName(String username, String password, AsyncTaskListener asyncTaskListener) {
+    public User getUserLogin(String username, String password, AsyncTaskListener asyncTaskListener) {
         return repository.getUserLogin(username, password, asyncTaskListener);
     }
 
-
-
-    public AsyncTask<String, Void, User> getUserByusername(String username)
-    {
+    public AsyncTask<String, Void, User> getUserByusername(String username) {
         AsyncTask<String, Void, User> user = repository.getUserByUsername(username);
 
         return user;
@@ -35,13 +32,9 @@ public class UserVM extends AndroidViewModel {
         repository.insert(user);
     }
 
-    public void updateUserPasswd(String username, String password)
-    {
-
+    public void updateUserPasswd(String username, String password) {
         repository.update(username, password);
     }
-
-
 
 
 }

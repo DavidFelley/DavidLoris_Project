@@ -22,4 +22,8 @@ public class AnswerVM extends AndroidViewModel {
     public LiveData<List<AnswerWithUsername>> getAllMessageFromSubject(int idSubject){
         return repository.getAllMessageFromSubject(idSubject);
     }
+
+    public void insert (Answer answer){
+        repository.insert(answer);
+    }
 }
