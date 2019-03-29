@@ -1,5 +1,6 @@
 package com.example.davidloris_project.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.davidloris_project.Fragment.AboutFragment;
 import com.example.davidloris_project.Fragment.AccountFragment;
@@ -30,7 +32,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Fragment displayedFragment;
     private FragmentManager fm = getSupportFragmentManager();
-    private TextView view;
+
 
 
     @Override
@@ -49,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        view = findViewById(R.id.Username);
+
 
 
         drawer.addDrawerListener(toggle);
@@ -115,4 +117,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         inSubjectFragment.setArguments(bundle);
         fm.beginTransaction().replace(R.id.fragment_container, inSubjectFragment).commit();
     }
+
+
 }

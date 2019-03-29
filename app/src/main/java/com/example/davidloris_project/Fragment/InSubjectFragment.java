@@ -15,18 +15,24 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.davidloris_project.Activity.AddAnswerActivity;
 import com.example.davidloris_project.Activity.AddSubjectActivity;
+import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.Adapter.MessageAdapter;
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
 import com.example.davidloris_project.Model.Answer;
+import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.AnswerVM;
 import com.example.davidloris_project.ViewModel.SubjectVM;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,9 +47,7 @@ public class InSubjectFragment extends Fragment {
     private SubjectVM subjectVM;
     private AnswerVM answerVM;
     private int idSubject;
-    private int idAnswer;
     private DateFormat date = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault());
-
 
 
     //we create the view
@@ -53,6 +57,7 @@ public class InSubjectFragment extends Fragment {
 
         /* Get the id of the subject that was clicked in the last fragment */
         idSubject = getArguments().getInt("idSubject");
+
 
 
         final View inSubjectView = inflater.inflate(R.layout.fragment_insubject, container, false);
@@ -107,11 +112,8 @@ public class InSubjectFragment extends Fragment {
 
 
 
-
-
         return inSubjectView;
     }
-
 
 
     /* This method create the insertion that the activity AddAnswer send back*/
@@ -137,6 +139,8 @@ public class InSubjectFragment extends Fragment {
 
 
     }
+
+
 
 
 }
