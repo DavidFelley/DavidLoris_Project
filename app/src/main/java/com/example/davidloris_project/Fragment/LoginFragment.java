@@ -79,8 +79,7 @@ public class LoginFragment extends Fragment {
     //We controle the login
     public void controlLogin() {
 
-        //All the informations that we need
-
+        //All the information that we need
         String username = editTextLogin.getText().toString();
         String password = editTextPassword.getText().toString();
         MY_PREFS_NAME = editTextLogin.getText().toString();

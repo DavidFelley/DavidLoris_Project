@@ -12,11 +12,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Activity.AddSubjectActivity"
-            android:parentActivityName=".Activity.HomeActivity"
             android:theme="@style/MyStyle" />
         <activity
             android:name=".Activity.AddEditAnswerActivity"
-            android:parentActivityName=".Activity.HomeActivity"
             android:theme="@style/MyStyle" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>

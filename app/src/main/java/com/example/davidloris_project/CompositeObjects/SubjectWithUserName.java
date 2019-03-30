@@ -48,11 +48,17 @@ public class SubjectWithUserName {
         this.textSubject = textSubject;
     }
 
-    public void setCategory(String category) { this.category = category; }
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-    public String getCategory() { return category; }
+    public String getCategory() {
+        return category;
+    }
 
-    public int getIdAutor() { return idAutor; }
+    public int getIdAutor() {
+        return idAutor;
+    }
 
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;

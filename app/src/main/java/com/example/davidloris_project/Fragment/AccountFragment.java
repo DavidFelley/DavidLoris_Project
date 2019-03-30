@@ -2,7 +2,6 @@ package com.example.davidloris_project.Fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,27 +20,24 @@ import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.example.davidloris_project.Fragment.LoginFragment.MY_PREFS_NAME;
 
 public class AccountFragment extends Fragment {
 
 
-    private View v;
     private UserVM userVM;
     private String username;
     private TextView textUsername;
     private EditText editTextOldPasswd;
     private EditText editTextNewPasswd;
     private EditText editTextConfirmPasswd;
-    private String oldPasswd;
     private String newPasswd;
     private String confirmPassword;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_account, container, false);
+        View v = inflater.inflate(R.layout.fragment_account, container, false);
         userVM = ViewModelProviders.of(this).get(UserVM.class);
 
         //We get the different TextView in the layout
@@ -71,7 +67,7 @@ public class AccountFragment extends Fragment {
     //We check the UserPass
     public void controleUserPass() {
 
-        oldPasswd = editTextOldPasswd.getText().toString();
+        String oldPasswd = editTextOldPasswd.getText().toString();
         newPasswd = editTextNewPasswd.getText().toString();
         confirmPassword = editTextConfirmPasswd.getText().toString();
         username = textUsername.getText().toString();
@@ -99,9 +95,5 @@ public class AccountFragment extends Fragment {
 
             }
         });
-
-
     }
-
-
 }

@@ -27,27 +27,30 @@ public class AddSubjectActivity extends AppCompatActivity {
         editTextTitle = findViewById(R.id.text_view_title);
         editTextContent = findViewById(R.id.text_view_message);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("New Subject");
     }
 
-    private void saveSubject(){
+    /* Insert subject */
+    private void saveSubject() {
         String title = editTextTitle.getText().toString();
         String message = editTextContent.getText().toString();
 
-        if(title.trim().isEmpty() || message.trim().isEmpty()){
-            Toast.makeText(this, "Title or message is empty", Toast.LENGTH_SHORT);
+        /* Control if the fields are not empty or filled with spaces */
+        if (title.trim().isEmpty() || message.trim().isEmpty()) {
+            Toast.makeText(this, "Title or message is empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        /* Send back the data to HomeActivity.ListSubjectFragment */
         Intent data = new Intent();
-        data.putExtra(EXTRA_TITLE,title);
-        data.putExtra(EXTRA_MESSAGE,message);
+        data.putExtra(EXTRA_TITLE, title);
+        data.putExtra(EXTRA_MESSAGE, message);
 
         setResult(RESULT_OK, data);
         finish();
     }
 
+    /* Menu creator */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -56,6 +59,7 @@ public class AddSubjectActivity extends AppCompatActivity {
         return true;
     }
 
+    /* Listener for the menu item */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

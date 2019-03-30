@@ -10,7 +10,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +49,9 @@ public class InSubjectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         /* Get the id of the subject that was clicked in the last fragment */
-        idSubject = getArguments().getInt("idSubject");
-
+        if (getArguments() != null) {
+            idSubject = getArguments().getInt("idSubject");
+        }
 
         final View inSubjectView = inflater.inflate(R.layout.fragment_insubject, container, false);
 
@@ -122,6 +122,7 @@ public class InSubjectFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         /* First if is when the user click on backButton */
         if (data != null) {
+            /* Check if we want to add an answer or edit one */
             if (requestCode == ADD_ANSWER_REQUEST && resultCode == getActivity().RESULT_OK) {
 
                 String message = data.getStringExtra(AddSubjectActivity.EXTRA_MESSAGE);
@@ -133,19 +134,19 @@ public class InSubjectFragment extends Fragment {
                 answerVM.insert(answer);
 
                 Toast.makeText(getActivity(), "Answer posted", Toast.LENGTH_SHORT).show();
+                /* Check for edit request */
             } else if (requestCode == EDIT_ANSWER_REQUEST && resultCode == getActivity().RESULT_OK) {
                 int idAnswer = data.getIntExtra(AddEditAnswerActivity.EXTRA_IDMESSAGE, -1);
                 int delete = data.getIntExtra(AddEditAnswerActivity.EXTRA_DELETE_MESSAGE, -1);
-                Log.i("****DELETE****", Integer.toString(delete));
                 if (idAnswer == -1) {
                     Toast.makeText(getActivity(), "Answer can't be updated", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                /* With delete you can edit or delete an answer so check if the request was to delete */
                 if (delete == 4) {
                     answerVM.delete(idAnswer);
                     Toast.makeText(getActivity(), "Answer deleted", Toast.LENGTH_SHORT).show();
-
+                /* if it wasn't to delete then they wanted to edit */
                 } else {
 
                     String message = data.getStringExtra(AddEditAnswerActivity.EXTRA_MESSAGE);

@@ -38,18 +38,18 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectH
         return subjects.size();
     }
 
-    public void setSubjects(List<Subject> subjects){
+    public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
         notifyDataSetChanged();
     }
 
-    class SubjectHolder extends RecyclerView.ViewHolder{
+    class SubjectHolder extends RecyclerView.ViewHolder {
         private TextView textViewIdSubject;
         private TextView textViewTitle;
         private TextView textViewDate;
 
 
-        public SubjectHolder(@NonNull View itemView) {
+        SubjectHolder(@NonNull View itemView) {
             super(itemView);
             textViewIdSubject = itemView.findViewById(R.id.text_view_idSubject);
             textViewTitle = itemView.findViewById(R.id.text_view_title_subject);
