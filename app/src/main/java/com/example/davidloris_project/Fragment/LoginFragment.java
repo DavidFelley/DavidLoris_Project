@@ -31,20 +31,15 @@ public class LoginFragment extends Fragment {
     private UserVM userVM;
     private EditText editTextLogin;
     private EditText editTextPassword;
-    private String username;
-    private String password;
-    private View v;
 
     public static String MY_PREFS_NAME ;
-    static int DEFAULT_ID;
+    static int USER_ID;
 
-
-    //We create the view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.fragment_login, container, false);
+        View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         userVM = ViewModelProviders.of(this).get(UserVM.class);
 
@@ -86,8 +81,8 @@ public class LoginFragment extends Fragment {
 
         //All the informations that we need
 
-        username = editTextLogin.getText().toString();
-        password = editTextPassword.getText().toString();
+        String username = editTextLogin.getText().toString();
+        String password = editTextPassword.getText().toString();
         MY_PREFS_NAME = editTextLogin.getText().toString();
 
         userVM.getUserLogin(username, password, new AsyncTaskListener() {
@@ -99,9 +94,9 @@ public class LoginFragment extends Fragment {
             @Override
             public void onSuccess(User user) {
 
-                DEFAULT_ID = user.getIdUser();
+                USER_ID = user.getIdUser();
 
-                Log.i("***** AFFICHE ID ******",Integer.toString(DEFAULT_ID));
+                Log.i("***** AFFICHE ID ******",Integer.toString(USER_ID));
 
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);

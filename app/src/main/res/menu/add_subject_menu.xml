@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/delete_subject"
+        android:icon="@drawable/ic_delete"
+        android:title="@string/DeleteButton"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/save_subject"
         android:icon="@drawable/ic_send"
         android:title="@string/SendButton"

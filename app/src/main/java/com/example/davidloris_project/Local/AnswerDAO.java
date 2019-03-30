@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.Model.Answer;
@@ -20,6 +21,9 @@ public interface AnswerDAO {
     @Insert
     void insertAnswer(Answer answer);
 
-    @Query("DELETE FROM tabAnswer WHERE idAnswer=:idanswer")
-    void delete(int idanswer);
+    @Update
+    void update(Answer answer);
+
+    @Query("DELETE FROM tabAnswer WHERE idAnswer=:idAnswer")
+    void delete(int idAnswer);
 }

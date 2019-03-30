@@ -15,7 +15,7 @@
             android:parentActivityName=".Activity.HomeActivity"
             android:theme="@style/MyStyle" />
         <activity
-            android:name=".Activity.AddAnswerActivity"
+            android:name=".Activity.AddEditAnswerActivity"
             android:parentActivityName=".Activity.HomeActivity"
             android:theme="@style/MyStyle" />
         <activity android:name=".Activity.MainActivity">

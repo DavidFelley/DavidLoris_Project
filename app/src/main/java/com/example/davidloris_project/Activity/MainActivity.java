@@ -21,27 +21,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         myDatabase = Room.databaseBuilder(getApplicationContext(), MyDatabase.class, "tabUser").allowMainThreadQueries().build();
 
         if (savedInstanceState == null) {
             fm.beginTransaction().replace(R.id.login_container, new LoginFragment()).commit();
         }
     }
-
-
-/*
-    public void Login(View view) {
-
-        if (displayedFragment.getClass().getSimpleName().equals("SignInFragment")) {
-            displayedFragment = new LoginFragment();
-            fm.beginTransaction().replace(R.id.login_container, displayedFragment).commit();
-
-        } else if (controleLogin()) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        }
-    }
-*/
 }

@@ -2,14 +2,13 @@ package com.example.davidloris_project.CompositeObjects;
 
 public class SubjectWithUserName {
 
-    //All getter and setters
     private int idSubject;
 
     private String pseudo;
 
     private String title;
 
-    private  String textSubject;
+    private String textSubject;
 
     private String category;
 
@@ -49,17 +48,11 @@ public class SubjectWithUserName {
         this.textSubject = textSubject;
     }
 
-    public String getCategory() {
-        return category;
-    }
+    public void setCategory(String category) { this.category = category; }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public String getCategory() { return category; }
 
-    public int getIdAutor() {
-        return idAutor;
-    }
+    public int getIdAutor() { return idAutor; }
 
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;

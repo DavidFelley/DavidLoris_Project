@@ -15,8 +15,6 @@ import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectHolder> {
 
-
-    //We create the arraylist of subjects
     private List<Subject> subjects = new ArrayList<>();
 
     @NonNull
@@ -35,7 +33,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectH
         subjectHolder.textViewDate.setText(currentSubject.getDate());
     }
 
-    //We get the size of the arraylist
     @Override
     public int getItemCount() {
         return subjects.size();
@@ -46,14 +43,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectH
         notifyDataSetChanged();
     }
 
-    //We create the class subjectholder
     class SubjectHolder extends RecyclerView.ViewHolder{
         private TextView textViewIdSubject;
         private TextView textViewTitle;
         private TextView textViewDate;
 
 
-        //Constructor
         public SubjectHolder(@NonNull View itemView) {
             super(itemView);
             textViewIdSubject = itemView.findViewById(R.id.text_view_idSubject);

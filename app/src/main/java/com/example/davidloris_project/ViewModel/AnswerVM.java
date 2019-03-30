@@ -18,7 +18,6 @@ public class AnswerVM extends AndroidViewModel {
 
     private AnswerRepository repository;
 
-
     public AnswerVM(@NonNull Application application) {
         super(application);
         repository = new AnswerRepository(application);
@@ -32,5 +31,9 @@ public class AnswerVM extends AndroidViewModel {
         repository.insert(answer);
     }
 
-    public void delete (int idAnswer) {repository.delete(idAnswer);}
+    public void update (Answer answer){
+        repository.update(answer);
+    }
+
+    public void delete (int idAnswer) {repository.deleteAnswer(idAnswer);}
 }

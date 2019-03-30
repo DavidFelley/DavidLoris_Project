@@ -1,5 +1,6 @@
 package com.example.davidloris_project.Adapter;
 
+import android.app.Notification;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,13 +11,13 @@ import android.widget.TextView;
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.Model.Answer;
 import com.example.davidloris_project.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder>{
-
-    //the list of all answer
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder> {
     private List<AnswerWithUsername> messages = new ArrayList<>();
+    private onItemClickListener listener;
 
 
     //Create the view
@@ -28,21 +29,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         return new MessageHolder(itemView);
     }
 
-
-
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageHolder messageHolder, int position) {
-            AnswerWithUsername currentMessage = messages.get(position);
-            messageHolder.textViewIdMessage.setText(String.valueOf(currentMessage.getIdAnswer()));
-            messageHolder.textViewMessageContent.setText(currentMessage.getTextAnswer());
-            messageHolder.textViewPseudo.setText(currentMessage.getPseudo());
-            messageHolder.textViewDateMessage.setText(currentMessage.getDate());
-    }
-
-    //we get the answer with the username
-    public AnswerWithUsername getAnswer(int position)
-    {
-        return messages.get(position);
+        AnswerWithUsername currentMessage = messages.get(position);
+        messageHolder.textViewIdMessage.setText(String.valueOf(currentMessage.getIdAnswer()));
+        messageHolder.textViewMessageContent.setText(currentMessage.getTextAnswer());
+        messageHolder.textViewPseudo.setText(currentMessage.getPseudo());
+        messageHolder.textViewDateMessage.setText(currentMessage.getDate());
     }
 
     //we get the size of the arraylist
@@ -71,8 +64,22 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
             textViewMessageContent = itemView.findViewById(R.id.text_view_message);
             textViewPseudo = itemView.findViewById(R.id.text_view_pseudoInMessage);
             textViewDateMessage = itemView.findViewById(R.id.text_view_dateInMessage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION)
+                        listener.onItemClick(messages.get(position));
+                }
+            });
         }
+    }
 
+    public interface onItemClickListener {
+        void onItemClick(AnswerWithUsername answer);
+    }
 
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.listener = listener;
     }
 }

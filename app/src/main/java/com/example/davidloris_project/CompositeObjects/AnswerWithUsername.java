@@ -2,7 +2,6 @@ package com.example.davidloris_project.CompositeObjects;
 
 public class AnswerWithUsername {
 
-    //All getters and setters
     private int idAnswer;
     private String pseudo;
     private String textAnswer;

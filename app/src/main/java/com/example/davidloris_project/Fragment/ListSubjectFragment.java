@@ -27,7 +27,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.davidloris_project.Fragment.LoginFragment.DEFAULT_ID;
+import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID;
 
 public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
@@ -87,7 +87,7 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-                Subject subject = new Subject(title, message, category, PostingDate,DEFAULT_ID);
+                Subject subject = new Subject(title, message, category, PostingDate,USER_ID);
 
                 subjectVM.insert(subject);
 

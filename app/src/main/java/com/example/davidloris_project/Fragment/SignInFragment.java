@@ -30,11 +30,6 @@ public class SignInFragment extends Fragment {
     private EditText editTextUsername;
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
-    private String username;
-    private String password;
-    private String confirmPassword;
-    private User userObject;
-    private AsyncTask<String, Void, User> userControle;
 
     public SignInFragment() {
 
@@ -71,11 +66,11 @@ public class SignInFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-            //All the informations that we need
-            username = editTextUsername.getText().toString();
-            password = editTextPassword.getText().toString();
-            confirmPassword = editTextConfirmPassword.getText().toString();
-            userControle = userVm.getUserByusername(username);
+            //Get all the informations from EditText
+            String username = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
+            String confirmPassword = editTextConfirmPassword.getText().toString();
+            AsyncTask<String, Void, User> userControle = userVm.getUserByusername(username);
 
 
             /* Control if the fields are not empty */
@@ -87,15 +82,14 @@ public class SignInFragment extends Fragment {
             /* control if the user doesn't already exist */
 
 
-
             /* control if the passwords match */
             if (!password.equals(confirmPassword)) {
                 Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            userObject = new User(username, password);
-            userVm.insert(userObject);
+            User newUser = new User(username, password);
+            userVm.insert(newUser);
 
             Toast.makeText(getActivity(), "User registered", Toast.LENGTH_SHORT).show();
 
@@ -104,7 +98,6 @@ public class SignInFragment extends Fragment {
             Fragment frag = new LoginFragment();
             t.replace(R.id.login_container,frag);
             t.commit();
-
 
         }
     };
@@ -115,7 +108,4 @@ public class SignInFragment extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new LoginFragment()).commit();
         }
     };
-
-
-
 }

@@ -38,24 +38,20 @@ public class AccountFragment extends Fragment {
     private String newPasswd;
     private String confirmPassword;
 
-
-    //We create the view
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_account, container, false);
         userVM = ViewModelProviders.of(this).get(UserVM.class);
 
-        //We get the informations
+        //We get the different TextView in the layout
         editTextNewPasswd = v.findViewById(R.id.newPassword);
         editTextOldPasswd = v.findViewById(R.id.ancienPassword);
         editTextConfirmPasswd = v.findViewById(R.id.confirmPassword);
         textUsername = v.findViewById(R.id.nameUser);
 
-        //On récupère le login du user
+        //We set the username
         textUsername.setText(MY_PREFS_NAME);
-
-
 
         //We instanciate the click of the button
         Button changePasswd = v.findViewById(R.id.btn_changePwd);
@@ -96,8 +92,7 @@ public class AccountFragment extends Fragment {
 
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
-                }else
-                {
+                } else {
                     Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
 
                 }
