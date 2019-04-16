@@ -21,6 +21,8 @@ import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -94,6 +96,11 @@ public class LoginFragment extends Fragment {
             public void onSuccess(User user) {
 
                 USER_ID = user.getIdUser();
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("message");
+
+                myRef.setValue("Hello, World!");
 
                 Log.i("***** AFFICHE ID ******",Integer.toString(USER_ID));
 
