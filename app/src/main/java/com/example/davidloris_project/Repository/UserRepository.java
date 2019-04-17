@@ -4,11 +4,45 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.davidloris_project.AsyncTaskListener;
+import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Local.UserDAO;
 import com.example.davidloris_project.Model.User;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class UserRepository {
+
+    private static UserRepository instance;
+
+    public UserRepository() {}
+
+    public static UserRepository getInstance() {
+        if (instance == null) {
+            synchronized (UserRepository.class) {
+                if (instance == null) {
+                    instance = new UserRepository();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void insert(final UserEntity user, final AsyncTaskListener callback) {
+        String id = FirebaseDatabase.getInstance().getReference("users").push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference("users")
+                .child(id)
+                .setValue(user, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
+    }
+
+
+    // Local Database USELESS
 
     private UserDAO userDao;
 
@@ -116,7 +150,7 @@ public class UserRepository {
             if (user == null) {
                 listener.onFailure();
             } else {
-                listener.onSuccess(user);
+                listener.onSuccess();
             }
         }
     }

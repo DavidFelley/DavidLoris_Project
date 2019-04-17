@@ -75,8 +75,18 @@ public class AccountFragment extends Fragment {
         userVM.getUserLogin(username, oldPasswd, new AsyncTaskListener() {
 
             @Override
+            public void onFailure(Exception e) {
+
+            }
+
+            @Override
             public void onFailure() {
                 Toast.makeText(getActivity(), "Old password incorrect", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess() {
+
             }
 
             @Override

@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "1020626397154",
-    "firebase_url": "https://davidlorisandroid.firebaseio.com",
-    "project_id": "davidlorisandroid",
-    "storage_bucket": "davidlorisandroid.appspot.com"
+    "project_number": "518198409757",
+    "firebase_url": "https://davidloris-14f5f.firebaseio.com",
+    "project_id": "davidloris-14f5f",
+    "storage_bucket": "davidloris-14f5f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1020626397154:android:de66dd091a1c3fef",
+        "mobilesdk_app_id": "1:518198409757:android:de66dd091a1c3fef",
         "android_client_info": {
           "package_name": "com.example.davidloris_project"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1020626397154-pp2knd7g7fdh4t52o8qlv3f8fcv3j21c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.davidloris_project",
-            "certificate_hash": "200913554ee1a94c3bf8688e11ebf246fbea1906"
-          }
-        },
-        {
-          "client_id": "1020626397154-ivb8p1ko7qb6ro7r3ioo9dm09bjf5m4g.apps.googleusercontent.com",
+          "client_id": "518198409757-9s27h9jqm6tln08pe65lhh83u13l8f4s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB9q426M1Xs97P1j903najYXD9NWYM0S74"
+          "current_key": "AIzaSyCO9WULZL9DtWqHdIZP6BSUgJYeKyhE8fo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1020626397154-ivb8p1ko7qb6ro7r3ioo9dm09bjf5m4g.apps.googleusercontent.com",
+              "client_id": "518198409757-9s27h9jqm6tln08pe65lhh83u13l8f4s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

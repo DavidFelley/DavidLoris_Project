@@ -19,13 +19,14 @@ import android.widget.Toast;
 
 import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.AsyncTaskListener;
+import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
 
 public class SignInFragment extends Fragment {
 
-
+    private UserEntity user;
     private UserVM userVM;
     private EditText editTextUsername;
     private EditText editTextPassword;
@@ -66,12 +67,7 @@ public class SignInFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-
-controlUser();
-
-
-
-
+            createUser();
         }
     };
 
@@ -83,6 +79,51 @@ controlUser();
     };
 
 
+    private void createUser() {
+
+        final String username = editTextUsername.getText().toString();
+        final String password = editTextPassword.getText().toString();
+        final String confirmPassword = editTextConfirmPassword.getText().toString();
+
+        if (username.trim().isEmpty() || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
+            Toast.makeText(getActivity(), "All fields must be completed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        user = new UserEntity();
+        user.setUsername(username);
+        user.setPassword(password);
+
+        userVM.createUser(user, new AsyncTaskListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(getActivity(), "User created successfully", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(User user) {
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.d("Creation Client", "createClient: failure", e);
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
+
+    // Method for Local Database -> Useless
+    /*
     public void controlUser() {
 
         //Get all the informations from EditText
@@ -94,16 +135,16 @@ controlUser();
             @Override
             public void onFailure() {
 
-                /* Control if the fields are not empty */
+                // Control if the fields are not empty
                 if (username.trim().isEmpty() || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
                     Toast.makeText(getActivity(), "All fields must be completed", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                /* control if the user doesn't already exist */
+                // control if the user doesn't already exist
 
 
-                /* control if the passwords match */
+                // control if the passwords match
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
                     return;
@@ -123,7 +164,7 @@ controlUser();
             }
 
             @Override
-            public void onSuccess(User user) {
+            public void onSuccess() {
 
                 editTextUsername.setText("");
 
@@ -134,5 +175,5 @@ controlUser();
         });
 
     }
-
+    */
 }

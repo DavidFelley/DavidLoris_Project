@@ -6,14 +6,22 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.example.davidloris_project.AsyncTaskListener;
+import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.Repository.UserRepository;
 
 public class UserVM extends AndroidViewModel {
 
-    //View model to get the methode
     private UserRepository repository;
 
+    public void createUser(UserEntity user, AsyncTaskListener callback) {
+        UserRepository.getInstance().insert(user, callback);
+    }
+
+
+
+
+    // Local Database USELESS
 
     public UserVM(@NonNull Application application) {
         super(application);
