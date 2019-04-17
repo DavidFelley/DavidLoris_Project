@@ -21,7 +21,6 @@ public class UserEntity {
         return username;
     }
 
-    @Exclude
     public String getPassword() {
         return password;
     }

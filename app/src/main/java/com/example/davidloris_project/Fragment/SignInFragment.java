@@ -111,6 +111,11 @@ public class SignInFragment extends Fragment {
             }
 
             @Override
+            public void onSuccess(UserEntity user) {
+
+            }
+
+            @Override
             public void onFailure(Exception e) {
                 Log.d("Creation Client", "createClient: failure", e);
             }

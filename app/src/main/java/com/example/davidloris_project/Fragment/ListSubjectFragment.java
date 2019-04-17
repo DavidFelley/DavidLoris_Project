@@ -89,19 +89,9 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-                SubjectEntity subject = new SubjectEntity(title, message, category, PostingDate,USER_ID);
+                Subject subject = new Subject(title, message, category, PostingDate,USER_ID);
 
-                subjectVM.insertCloud(subject, new OnAsyncEventListener() {
-                    @Override
-                    public void onSuccess() {
-
-                    }
-
-                    @Override
-                    public void onFailure(Exception e) {
-
-                    }
-                });
+                subjectVM.insert(subject);
 
                 Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
             } else {
