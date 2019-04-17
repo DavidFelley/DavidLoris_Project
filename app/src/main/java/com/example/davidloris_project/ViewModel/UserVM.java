@@ -15,7 +15,7 @@ public class UserVM extends AndroidViewModel {
     private UserRepository repository;
 
     public void createUser(UserEntity user, AsyncTaskListener callback) {
-        UserRepository.getInstance().insert(user, callback);
+        UserRepository.getInstance().register(user, callback);
     }
 
 

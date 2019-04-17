@@ -120,11 +120,6 @@ public class LoginFragment extends Fragment {
                 startActivity(intent);
 
             }
-
-            @Override
-            public void onSuccess(UserEntity user) {
-
-            }
         });
 
     }

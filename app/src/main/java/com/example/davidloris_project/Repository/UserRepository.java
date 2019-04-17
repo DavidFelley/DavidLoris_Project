@@ -8,6 +8,7 @@ import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Local.UserDAO;
 import com.example.davidloris_project.Model.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserRepository {
@@ -27,19 +28,42 @@ public class UserRepository {
         return instance;
     }
 
-    public void insert(final UserEntity user, final AsyncTaskListener callback) {
-        String id = FirebaseDatabase.getInstance().getReference("users").push().getKey();
+
+    private void insert(final UserEntity user, final AsyncTaskListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("users")
-                .child(id)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(user, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
+                        FirebaseAuth.getInstance().getCurrentUser().delete()
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        callback.onFailure(null);
+                                    } else {
+                                        callback.onFailure(task.getException());
+                                    }
+                                });
                     } else {
                         callback.onSuccess();
                     }
                 });
     }
+
+    public void register(final UserEntity user, final AsyncTaskListener callback) {
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                user.getEmail(),
+                user.getPassword()
+        ).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                user.setIdUser(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                insert(user, callback);
+            } else {
+                callback.onFailure(task.getException());
+            }
+        });
+    }
+
 
 
     // Local Database USELESS

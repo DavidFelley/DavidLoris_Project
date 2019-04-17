@@ -1,14 +1,10 @@
 package com.example.davidloris_project.Fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
@@ -28,6 +23,7 @@ public class SignInFragment extends Fragment {
 
     private UserEntity user;
     private UserVM userVM;
+    private EditText editTextEmail;
     private EditText editTextUsername;
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
@@ -48,6 +44,7 @@ public class SignInFragment extends Fragment {
         userVM = ViewModelProviders.of(this).get(UserVM.class);
 
         //All the informations about the signin
+        editTextEmail = view.findViewById(R.id.emailField);
         editTextUsername = view.findViewById(R.id.usernameField);
         editTextPassword = view.findViewById(R.id.passwordField);
         editTextConfirmPassword = view.findViewById(R.id.passwordConfirmField);
@@ -81,21 +78,27 @@ public class SignInFragment extends Fragment {
 
     private void createUser() {
 
+        final String email = editTextEmail.getText().toString();
         final String username = editTextUsername.getText().toString();
         final String password = editTextPassword.getText().toString();
         final String confirmPassword = editTextConfirmPassword.getText().toString();
 
-        if (username.trim().isEmpty() || password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
-            Toast.makeText(getActivity(), "All fields must be completed", Toast.LENGTH_SHORT).show();
+        if (username.trim().isEmpty()) {
+            editTextUsername.setError("Invalid username");
+            editTextUsername.requestFocus();
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+            editTextPassword.setError("Passwords doesn't match");
+            editTextPassword.requestFocus();
+            editTextPassword.setText("");
+            editTextConfirmPassword.setText("");
             return;
         }
 
         user = new UserEntity();
+        user.setEmail(email);
         user.setUsername(username);
         user.setPassword(password);
 
@@ -111,13 +114,25 @@ public class SignInFragment extends Fragment {
             }
 
             @Override
-            public void onSuccess(UserEntity user) {
-
-            }
-
-            @Override
             public void onFailure(Exception e) {
-                Log.d("Creation Client", "createClient: failure", e);
+
+                if (e.getClass().getSimpleName().equals("FirebaseAuthInvalidCredentialsException")) {
+                    editTextEmail.setError(e.getMessage());
+                    editTextEmail.requestFocus();
+                    return;
+                }
+
+                if (e.getClass().getSimpleName().equals("FirebaseAuthUserCollisionException")) {
+                    editTextEmail.setError(e.getMessage());
+                    editTextEmail.requestFocus();
+                    return;
+                }
+
+                if (e.getClass().getSimpleName().equals("FirebaseAuthWeakPasswordException")) {
+                    editTextPassword.setError(e.getMessage());
+                    editTextPassword.requestFocus();
+                    return;
+                }
             }
 
             @Override

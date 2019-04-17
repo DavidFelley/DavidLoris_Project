@@ -3,13 +3,12 @@ package com.example.davidloris_project.ViewModel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
 import android.support.annotation.NonNull;
 
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
 import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Subject;
-import com.example.davidloris_project.OnAsyncEventListener;
 import com.example.davidloris_project.Repository.SubjectRepository;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class SubjectVM extends AndroidViewModel {
     private SubjectRepository repository;
 
 
-   public void insertCloud(SubjectEntity subject, OnAsyncEventListener callBack)
+   public void insertCloud(SubjectEntity subject, AsyncTaskListener callBack)
    {
        SubjectRepository.getInstance().insetCloud(subject, callBack);
    }

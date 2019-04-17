@@ -17,9 +17,7 @@ import android.widget.Toast;
 
 import com.example.davidloris_project.Adapter.SubjectAdapter;
 import com.example.davidloris_project.Activity.AddSubjectActivity;
-import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Subject;
-import com.example.davidloris_project.OnAsyncEventListener;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.SubjectVM;
 

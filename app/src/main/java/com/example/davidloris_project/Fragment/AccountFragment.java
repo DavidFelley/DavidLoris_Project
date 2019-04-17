@@ -107,11 +107,6 @@ public class AccountFragment extends Fragment {
                 }
 
             }
-
-            @Override
-            public void onSuccess(UserEntity user) {
-
-            }
         });
     }
 }

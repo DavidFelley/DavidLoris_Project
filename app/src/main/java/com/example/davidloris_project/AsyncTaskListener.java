@@ -8,6 +8,4 @@ public interface AsyncTaskListener {
     void onFailure();
     void onSuccess();
     void onSuccess(User user);
-
-    void onSuccess(UserEntity user);
 }

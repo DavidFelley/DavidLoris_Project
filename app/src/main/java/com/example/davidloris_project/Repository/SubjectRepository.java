@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
 import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.LiveData.SubjectListLiveData;
@@ -11,7 +12,6 @@ import com.example.davidloris_project.LiveData.SubjectLiveData;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Local.SubjectDAO;
 import com.example.davidloris_project.Model.Subject;
-import com.example.davidloris_project.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -54,7 +54,7 @@ public class SubjectRepository {
         return new SubjectListLiveData(reference);
     }
 
-    public void insetCloud(final SubjectEntity subject, final OnAsyncEventListener callBack)
+    public void insetCloud(final SubjectEntity subject, final AsyncTaskListener callBack)
     {
 
         String id = FirebaseDatabase.getInstance().getReference("subjects").push().getKey();

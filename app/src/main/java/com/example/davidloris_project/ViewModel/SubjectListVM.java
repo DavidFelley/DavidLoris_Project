@@ -9,7 +9,6 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.example.davidloris_project.Entity.SubjectEntity;
-import com.example.davidloris_project.OnAsyncEventListener;
 import com.example.davidloris_project.Repository.SubjectRepository;
 
 import java.util.List;

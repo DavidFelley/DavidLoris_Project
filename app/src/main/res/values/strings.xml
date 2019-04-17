@@ -23,4 +23,5 @@
     <string name="Content_Field">Enter your message</string>
     <string name="SendButton">send</string>
     <string name="DeleteButton">DeleteButton</string>
+    <string name="email">Email</string>
 </resources>

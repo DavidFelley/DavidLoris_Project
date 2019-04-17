@@ -6,21 +6,29 @@ public class UserEntity {
 
     private String idUser;
 
+    private String email;
+
     private String username;
 
     private String password;
 
-    public UserEntity(){}
+    public UserEntity() {
+    }
 
     @Exclude
     public String getIdUser() {
         return idUser;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getUsername() {
         return username;
     }
 
+    @Exclude
     public String getPassword() {
         return password;
     }
@@ -35,5 +43,9 @@ public class UserEntity {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
