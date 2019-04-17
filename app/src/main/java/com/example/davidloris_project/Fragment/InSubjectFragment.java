@@ -72,14 +72,11 @@ public class InSubjectFragment extends Fragment {
         SubjectVM subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
 
         /* Show subject on top of the page */
-        subjectVM.getSubjectById(idSubject).observe(this, new Observer<SubjectWithUserName>() {
-            @Override
-            public void onChanged(@Nullable SubjectWithUserName subjectWithUserName) {
-                textViewTitleSubject.setText(subjectWithUserName.getTitle());
-                textViewContentSubject.setText(subjectWithUserName.getTextSubject());
-                textViewPseudoSubject.setText(subjectWithUserName.getPseudo());
-                textViewDateSubject.setText(subjectWithUserName.getDate());
-            }
+        subjectVM.getSubjectById(idSubject).observe(this, (Observer<SubjectWithUserName>) subjectWithUserName -> {
+            textViewTitleSubject.setText(subjectWithUserName.getTitle());
+            textViewContentSubject.setText(subjectWithUserName.getTextSubject());
+            textViewPseudoSubject.setText(subjectWithUserName.getPseudo());
+            textViewDateSubject.setText(subjectWithUserName.getDate());
         });
 
         /* Method that keep the fragment up to date whenever their is a new subject inserted */
