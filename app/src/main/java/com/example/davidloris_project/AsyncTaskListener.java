@@ -1,5 +1,6 @@
 package com.example.davidloris_project;
 
+import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
 
 public interface AsyncTaskListener {
@@ -7,4 +8,6 @@ public interface AsyncTaskListener {
     void onFailure();
     void onSuccess();
     void onSuccess(User user);
+
+    void onSuccess(UserEntity user);
 }

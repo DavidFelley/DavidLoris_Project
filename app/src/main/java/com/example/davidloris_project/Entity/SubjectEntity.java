@@ -15,6 +15,7 @@ public class SubjectEntity
 
     private String category;
 
+
     private String idAutor;
 
     private String date;
@@ -22,6 +23,14 @@ public class SubjectEntity
     public SubjectEntity()
     {
 
+    }
+
+    public SubjectEntity(String title, String textSubject, String category, String date, String idAutor){
+        this.title = title;
+        this.textSubject = textSubject;
+        this.category = category;
+        this.date = date;
+        this.idAutor = idAutor;
     }
 
     @Exclude

@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.example.davidloris_project.Adapter.SubjectAdapter;
 import com.example.davidloris_project.Activity.AddSubjectActivity;
+import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Subject;
+import com.example.davidloris_project.OnAsyncEventListener;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.SubjectVM;
 
@@ -87,9 +89,19 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-                Subject subject = new Subject(title, message, category, PostingDate,USER_ID);
+                SubjectEntity subject = new SubjectEntity(title, message, category, PostingDate,USER_ID);
 
-                subjectVM.insert(subject);
+                subjectVM.insertCloud(subject, new OnAsyncEventListener() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+
+                    }
+                });
 
                 Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
             } else {

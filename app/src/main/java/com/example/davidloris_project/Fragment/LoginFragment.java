@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Activity.HomeActivity;
+import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
@@ -87,6 +88,7 @@ public class LoginFragment extends Fragment {
         MY_PREFS_NAME = editTextLogin.getText().toString();
 
         userVM.getUserLogin(username, password, new AsyncTaskListener() {
+
             @Override
             public void onFailure(Exception e) {
 
@@ -102,6 +104,7 @@ public class LoginFragment extends Fragment {
 
             }
 
+
             @Override
             public void onSuccess(User user) {
 
@@ -112,10 +115,14 @@ public class LoginFragment extends Fragment {
 
                 myRef.setValue("Hello, World!");
 
-                Log.i("***** AFFICHE ID ******",Integer.toString(USER_ID));
 
                 Intent intent = new Intent(getActivity(), HomeActivity.class);
                 startActivity(intent);
+
+            }
+
+            @Override
+            public void onSuccess(UserEntity user) {
 
             }
         });

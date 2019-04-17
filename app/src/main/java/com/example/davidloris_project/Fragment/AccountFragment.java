@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.AsyncTaskListener;
+import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
@@ -74,6 +75,7 @@ public class AccountFragment extends Fragment {
 
         userVM.getUserLogin(username, oldPasswd, new AsyncTaskListener() {
 
+
             @Override
             public void onFailure(Exception e) {
 
@@ -89,6 +91,7 @@ public class AccountFragment extends Fragment {
 
             }
 
+
             @Override
             public void onSuccess(User user) {
 
@@ -102,6 +105,11 @@ public class AccountFragment extends Fragment {
                     Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
 
                 }
+
+            }
+
+            @Override
+            public void onSuccess(UserEntity user) {
 
             }
         });
