@@ -37,6 +37,7 @@ public class LoginFragment extends Fragment {
 
     public static String MY_PREFS_NAME ;
     static int USER_ID;
+    static String USER_ID_CLOUD = "G6al7SMgkUPX0l7HvRwqw6nZkkJ2";
 
     @Nullable
     @Override
@@ -78,6 +79,18 @@ public class LoginFragment extends Fragment {
         }
     };
 
+    //we controle the login cloud
+    public void controlLoginCloud()
+    {
+        //All the information that we need
+        String username = editTextLogin.getText().toString();
+        String password = editTextPassword.getText().toString();
+        MY_PREFS_NAME = editTextLogin.getText().toString();
+
+
+
+    }
+
 
     //We controle the login
     public void controlLogin() {
@@ -109,6 +122,7 @@ public class LoginFragment extends Fragment {
             public void onSuccess(User user) {
 
                 USER_ID = user.getIdUser();
+
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("message");
