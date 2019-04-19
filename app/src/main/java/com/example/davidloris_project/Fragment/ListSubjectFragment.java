@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID;
+import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID_CLOUD;
 
 public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
@@ -87,9 +88,23 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-                Subject subject = new Subject(title, message, category, PostingDate,1 /*A REMPLACER PAR STRING ID*/);
+               // Subject subject = new Subject(title, message, category, PostingDate,USER_ID);
 
-                subjectVM.insert(subject);
+                SubjectEntity subjectEntity = new SubjectEntity(title, message,category, PostingDate, USER_ID_CLOUD);
+
+               // subjectVM.insert(subject);
+
+                subjectVM.insertCloud(subjectEntity, new OnAsyncEventListener() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+
+                    }
+                });
 
                 Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
             } else {
