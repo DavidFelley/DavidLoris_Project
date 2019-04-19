@@ -3,11 +3,11 @@ package com.example.davidloris_project.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.davidloris_project.Adapter.SubjectAdapter;
 import com.example.davidloris_project.Activity.AddSubjectActivity;
+import com.example.davidloris_project.Adapter.SubjectAdapter;
+import com.example.davidloris_project.AsyncTaskListener;
+import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.SubjectVM;
@@ -27,7 +29,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID;
 import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID_CLOUD;
 
 public class ListSubjectFragment extends Fragment {
@@ -94,14 +95,20 @@ public class ListSubjectFragment extends Fragment {
 
                // subjectVM.insert(subject);
 
-                subjectVM.insertCloud(subjectEntity, new OnAsyncEventListener() {
+                subjectVM.insertCloud(subjectEntity, new AsyncTaskListener() {
+
                     @Override
-                    public void onSuccess() {
+                    public void onFailure(Exception e) {
 
                     }
 
                     @Override
-                    public void onFailure(Exception e) {
+                    public void onFailure() {
+
+                    }
+
+                    @Override
+                    public void onSuccess() {
 
                     }
                 });

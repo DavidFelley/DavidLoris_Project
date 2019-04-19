@@ -5,27 +5,24 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SubjectEntity
-{
+public class SubjectEntity {
     private String idSubject;
 
     private String title;
 
-    private  String textSubject;
+    private String textSubject;
 
     private String category;
-
 
     private String idAutor;
 
     private String date;
 
-    public SubjectEntity()
-    {
+    public SubjectEntity() {
 
     }
 
-    public SubjectEntity(String title, String textSubject, String category, String date, String idAutor){
+    public SubjectEntity(String title, String textSubject, String category, String date, String idAutor) {
         this.title = title;
         this.textSubject = textSubject;
         this.category = category;
@@ -34,8 +31,7 @@ public class SubjectEntity
     }
 
     @Exclude
-    public String getId()
-    {
+    public String getId() {
         return idSubject;
     }
 
@@ -92,7 +88,6 @@ public class SubjectEntity
         result.put("category", category);
         result.put("idAutor", idAutor);
         result.put("date", date);
-
 
         return result;
     }

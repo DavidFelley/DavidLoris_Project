@@ -32,8 +32,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID;
-
 public class InSubjectFragment extends Fragment {
     public static final int ADD_ANSWER_REQUEST = 1;
     public static final int EDIT_ANSWER_REQUEST = 2;

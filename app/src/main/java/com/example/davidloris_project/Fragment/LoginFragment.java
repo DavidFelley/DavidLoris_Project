@@ -27,7 +27,7 @@ public class LoginFragment extends Fragment {
     private EditText editTextPassword;
 
     public static String MY_PREFS_NAME;
-    static String USER_ID;
+    static String USER_ID_CLOUD;
 
     @Nullable
     @Override
@@ -108,7 +108,7 @@ public class LoginFragment extends Fragment {
                     startActivity(intent);
                     editTextLogin.setText("");
                     editTextPassword.setText("");
-                    USER_ID = FirebaseAuth.getInstance().getUid();
+                    USER_ID_CLOUD = FirebaseAuth.getInstance().getUid();
                 } else {
                     editTextLogin.setError("Invalid username or password");
                     editTextLogin.requestFocus();
