@@ -89,12 +89,6 @@ public class AccountFragment extends Fragment {
             @Override
             public void onSuccess() {
 
-            }
-
-
-            @Override
-            public void onSuccess(User user) {
-
                 if (newPasswd.equals(confirmPassword)) {
                     userVM.updateUserPasswd(username, newPasswd);
                     Toast.makeText(getActivity(), "password changed", Toast.LENGTH_SHORT).show();
@@ -105,8 +99,8 @@ public class AccountFragment extends Fragment {
                     Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
 
                 }
-
             }
+
         });
     }
 }

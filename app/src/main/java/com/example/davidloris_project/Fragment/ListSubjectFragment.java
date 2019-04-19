@@ -87,7 +87,7 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-                Subject subject = new Subject(title, message, category, PostingDate,USER_ID);
+                Subject subject = new Subject(title, message, category, PostingDate,1 /*A REMPLACER PAR STRING ID*/);
 
                 subjectVM.insert(subject);
 

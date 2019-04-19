@@ -100,7 +100,7 @@ public class InSubjectFragment extends Fragment {
         adapter.setOnItemClickListener(new MessageAdapter.onItemClickListener() {
             @Override
             public void onItemClick(AnswerWithUsername answer) {
-                if (answer.getIdAutor() == USER_ID) {
+                if (answer.getIdAutor() == 1 /*A REMPLACER PAR STRING ID*/) {
                     savedAnswer = answer;
                     Intent intent = new Intent(getActivity(), AddEditAnswerActivity.class);
                     intent.putExtra(AddEditAnswerActivity.EXTRA_IDMESSAGE, answer.getIdAnswer());
@@ -126,7 +126,7 @@ public class InSubjectFragment extends Fragment {
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
 
-                Answer answer = new Answer(message, PostingDate, USER_ID, idSubject);
+                Answer answer = new Answer(message, PostingDate, 1 /*A REMPLACER PAR STRING ID*/, idSubject);
 
                 answerVM.insert(answer);
 

@@ -2,15 +2,14 @@ package com.example.davidloris_project.Entity;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserEntity {
 
     private String idUser;
 
-    private String email;
-
     private String username;
-
-    private String password;
 
     public UserEntity() {
     }
@@ -20,32 +19,22 @@ public class UserEntity {
         return idUser;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public String getUsername() {
         return username;
-    }
-
-    @Exclude
-    public String getPassword() {
-        return password;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Exclude
+    public Map<String, Object> toValueMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put(idUser, username);
+        return result;
     }
 }

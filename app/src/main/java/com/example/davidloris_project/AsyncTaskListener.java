@@ -7,5 +7,4 @@ public interface AsyncTaskListener {
     void onFailure(Exception e);
     void onFailure();
     void onSuccess();
-    void onSuccess(User user);
 }
