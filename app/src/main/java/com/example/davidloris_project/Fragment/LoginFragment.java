@@ -17,6 +17,7 @@ import com.example.davidloris_project.BaseApp;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.Repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginFragment extends Fragment {

@@ -39,8 +39,7 @@ public class SubjectRepository {
 
     public LiveData<SubjectEntity> getSubjectFromIdCloud(final String idSubject) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("subjects")
-                .child(idSubject);
+                .getReference("subjects");
 
         return new SubjectLiveData(reference);
     }

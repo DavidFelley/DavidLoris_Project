@@ -21,7 +21,9 @@ import com.example.davidloris_project.Activity.AddSubjectActivity;
 import com.example.davidloris_project.Adapter.MessageAdapter;
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
 import com.example.davidloris_project.CompositeObjects.SubjectWithUserName;
+import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Answer;
+import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.AnswerVM;
 import com.example.davidloris_project.ViewModel.SubjectVM;
@@ -37,7 +39,7 @@ public class InSubjectFragment extends Fragment {
     public static final int EDIT_ANSWER_REQUEST = 2;
 
     private AnswerVM answerVM;
-    private int idSubject;
+    private String idSubject;
     private DateFormat date = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault());
     private AnswerWithUsername savedAnswer;
 
@@ -48,7 +50,7 @@ public class InSubjectFragment extends Fragment {
 
         /* Get the id of the subject that was clicked in the last fragment */
         if (getArguments() != null) {
-            idSubject = getArguments().getInt("idSubject");
+            idSubject = getArguments().getString("idSubject");
         }
 
         final View inSubjectView = inflater.inflate(R.layout.fragment_insubject, container, false);
@@ -70,15 +72,15 @@ public class InSubjectFragment extends Fragment {
         SubjectVM subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
 
         /* Show subject on top of the page */
-        subjectVM.getSubjectById(idSubject).observe(this, (Observer<SubjectWithUserName>) subjectWithUserName -> {
+        subjectVM.getSubjectByIdCloud(idSubject).observe(this, (Observer<SubjectEntity>) subjectWithUserName -> {
             textViewTitleSubject.setText(subjectWithUserName.getTitle());
             textViewContentSubject.setText(subjectWithUserName.getTextSubject());
-            textViewPseudoSubject.setText(subjectWithUserName.getPseudo());
+            textViewPseudoSubject.setText(subjectWithUserName.getIdAutor());
             textViewDateSubject.setText(subjectWithUserName.getDate());
         });
 
         /* Method that keep the fragment up to date whenever their is a new subject inserted */
-        answerVM.getAllMessageFromSubject(idSubject).observe(this, new Observer<List<AnswerWithUsername>>() {
+        answerVM.getAllMessageFromSubject(1).observe(this, new Observer<List<AnswerWithUsername>>() {
             @Override
             public void onChanged(@Nullable List<AnswerWithUsername> messages) {
                 adapter.setMessages(messages);
@@ -124,9 +126,9 @@ public class InSubjectFragment extends Fragment {
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
 
-                Answer answer = new Answer(message, PostingDate, 1 /*A REMPLACER PAR STRING ID*/, idSubject);
+                Answer answer = new Answer(message, PostingDate, 1 /*A REMPLACER PAR STRING ID*/, 1);
 
-                //answerVM.insert(answer);
+                answerVM.insert(answer);
 
                 Toast.makeText(getActivity(), "Answer posted", Toast.LENGTH_SHORT).show();
                 /* Check for edit request */

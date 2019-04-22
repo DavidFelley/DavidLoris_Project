@@ -33,7 +33,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID_CLOUD;
+import static com.example.davidloris_project.Fragment.LoginFragment.USER_NAME;
 
 public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
@@ -98,7 +98,7 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-                SubjectEntity subjectEntity = new SubjectEntity(title, message, category, PostingDate, USER_ID_CLOUD);
+                SubjectEntity subjectEntity = new SubjectEntity(title, message, category, PostingDate, USER_NAME);
 
                 // subjectVM.insert(subject);
                 subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
