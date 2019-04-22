@@ -26,8 +26,6 @@ public class SubjectVM extends AndroidViewModel {
        SubjectRepository.getInstance().insetCloud(subject, callBack);
    }
 
-
-
     public SubjectVM(@NonNull Application application) {
         super(application);
         repository = new SubjectRepository(application);
