@@ -126,7 +126,7 @@ public class InSubjectFragment extends Fragment {
 
                 Answer answer = new Answer(message, PostingDate, 1 /*A REMPLACER PAR STRING ID*/, idSubject);
 
-                answerVM.insert(answer);
+                //answerVM.insert(answer);
 
                 Toast.makeText(getActivity(), "Answer posted", Toast.LENGTH_SHORT).show();
                 /* Check for edit request */

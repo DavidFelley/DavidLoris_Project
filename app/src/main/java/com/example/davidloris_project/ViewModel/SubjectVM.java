@@ -27,6 +27,11 @@ public class SubjectVM extends AndroidViewModel {
         repository = new SubjectRepository(application);
     }
 
+    public LiveData<SubjectEntity> getSubjectByIdCloud(String idSubject)
+    {
+       return repository.getSubjectFromIdCloud(idSubject);
+    }
+
     public LiveData<List<Subject>> getAllSubjectsFromCategory(String category){
         return repository.getAllSubjectsFromCategory(category);
     }

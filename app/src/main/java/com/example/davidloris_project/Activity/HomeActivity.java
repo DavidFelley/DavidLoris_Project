@@ -100,11 +100,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void SubjectClick(View view) {
         /* Get the id of the subject in text view */
         TextView textViewIdSubject = view.findViewById(R.id.text_view_idSubject);
-        int idSubject = Integer.parseInt(textViewIdSubject.getText().toString());
+        String idSubject = textViewIdSubject.getText().toString();
+
+
 
         /* Pass the id  to the fragment to do the correct query and get the correct subject */
         Bundle bundle = new Bundle();
-        bundle.putInt("idSubject", idSubject);
+        bundle.putString("idSubject", idSubject);
 
         InSubjectFragment inSubjectFragment = new InSubjectFragment();
         inSubjectFragment.setArguments(bundle);

@@ -18,6 +18,14 @@ public class AnswerEntity
 
     private String date;
 
+    public AnswerEntity(String textAnswer, String idAutor, String idSubject, String date)
+    {
+        this.textAnswer = textAnswer;
+        this.idAutor = idAutor;
+        this.idSubject = idSubject;
+        this.date = date;
+    }
+
 
     @Exclude
     public String getIdAnswer() {
