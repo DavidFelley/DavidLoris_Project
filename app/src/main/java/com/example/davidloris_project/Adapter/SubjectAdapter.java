@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.R;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectHolder> {
 
-    private List<Subject> subjects = new ArrayList<>();
+    private List<SubjectEntity> subjects = new ArrayList<>();
 
     @NonNull
     @Override
@@ -27,8 +28,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectH
 
     @Override
     public void onBindViewHolder(@NonNull SubjectHolder subjectHolder, int position) {
-        Subject currentSubject = subjects.get(position);
-        subjectHolder.textViewIdSubject.setText(String.valueOf(currentSubject.getIdSubject()));
+        SubjectEntity currentSubject = subjects.get(position);
+        subjectHolder.textViewIdSubject.setText(String.valueOf(currentSubject.getId()));
         subjectHolder.textViewTitle.setText(currentSubject.getTitle());
         subjectHolder.textViewDate.setText(currentSubject.getDate());
     }
@@ -38,7 +39,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectH
         return subjects.size();
     }
 
-    public void setSubjects(List<Subject> subjects) {
+    public void setSubjects(List<SubjectEntity> subjects) {
         this.subjects = subjects;
         notifyDataSetChanged();
     }

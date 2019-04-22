@@ -37,8 +37,7 @@ public class SubjectRepository {
         return instance;
     }
 
-    public LiveData<SubjectEntity> getSubjectCloud(final String idSubject)
-    {
+    public LiveData<SubjectEntity> getSubjectFromIdCloud(final String idSubject) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("subjects")
                 .child(idSubject);
@@ -46,16 +45,14 @@ public class SubjectRepository {
         return new SubjectLiveData(reference);
     }
 
-
-    public LiveData<List<SubjectEntity>> getAllSubjectsCloud()
-    {
+    public LiveData<List<SubjectEntity>> getSubjectFromCategoryCloud(final String category) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("subjects");
+
         return new SubjectListLiveData(reference);
     }
 
-    public void insetCloud(final SubjectEntity subject, final AsyncTaskListener callBack)
-    {
+    public void insertCloud(final SubjectEntity subject, final AsyncTaskListener callBack) {
 
         String id = FirebaseDatabase.getInstance().getReference("subjects").push().getKey();
         FirebaseDatabase.getInstance()
@@ -71,31 +68,31 @@ public class SubjectRepository {
     }
 
 
-    public SubjectRepository(Application application){
+    public SubjectRepository(Application application) {
         MyDatabase database = MyDatabase.getInstance(application);
         subjectDao = database.subjectDAO();
     }
 
     //Get all subjects from category
-    public LiveData<List<Subject>> getAllSubjectsFromCategory(String category){
+    public LiveData<List<Subject>> getAllSubjectsFromCategory(String category) {
         return subjectDao.getAllSubjectsFromCategory(category);
     }
 
     //Get all subjects by id
-    public LiveData<SubjectWithUserName> getSubjectById(int id){
+    public LiveData<SubjectWithUserName> getSubjectById(int id) {
         return subjectDao.getSubjectById(id);
     }
 
     //Insertion subject
-    public void insert(Subject subject){
+    public void insert(Subject subject) {
         new InsertSubjectAsyncTask(subjectDao).execute(subject);
     }
 
-    private static class InsertSubjectAsyncTask extends AsyncTask<Subject, Void, Void>{
+    private static class InsertSubjectAsyncTask extends AsyncTask<Subject, Void, Void> {
 
         private SubjectDAO subjectDao;
 
-        private InsertSubjectAsyncTask(SubjectDAO subjectDao){
+        private InsertSubjectAsyncTask(SubjectDAO subjectDao) {
             this.subjectDao = subjectDao;
         }
 
@@ -105,8 +102,6 @@ public class SubjectRepository {
             return null;
         }
     }
-
-
 
 
 }

@@ -15,15 +15,11 @@ import java.util.List;
 
 public class SubjectVM extends AndroidViewModel {
 
-    //View model to get the methode
-
-
-    private SubjectRepository repository;
-
+   private SubjectRepository repository;
 
    public void insertCloud(SubjectEntity subject, AsyncTaskListener callBack)
    {
-       SubjectRepository.getInstance().insetCloud(subject, callBack);
+       SubjectRepository.getInstance().insertCloud(subject, callBack);
    }
 
     public SubjectVM(@NonNull Application application) {

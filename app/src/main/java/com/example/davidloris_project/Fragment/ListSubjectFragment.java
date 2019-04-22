@@ -21,10 +21,14 @@ import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.R;
+import com.example.davidloris_project.ViewModel.SubjectListVM;
 import com.example.davidloris_project.ViewModel.SubjectVM;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -34,6 +38,8 @@ import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID_CLOU
 public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
 
+    private List<SubjectEntity> subjects;
+    private SubjectListVM subjectListVM;
     private SubjectVM subjectVM;
     private String category;
     private DateFormat date = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.getDefault());
@@ -52,17 +58,20 @@ public class ListSubjectFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         final SubjectAdapter adapter = new SubjectAdapter();
-        recyclerView.setAdapter(adapter);
 
-        subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
+        subjects = new ArrayList<>();
 
-        /* Method that keep the fragment up to date whenever their is a new subject inserted */
-        subjectVM.getAllSubjectsFromCategory(category).observe(this, new Observer<List<Subject>>() {
-            @Override
-            public void onChanged(@Nullable List<Subject> subjects) {
+        SubjectListVM.Factory factory = new SubjectListVM.Factory(
+                getActivity().getApplication(), category);
+        subjectListVM = ViewModelProviders.of(this, factory).get(SubjectListVM.class);
+        subjectListVM.getSubjects().observe(this, subjectEntities -> {
+            if (subjectEntities != null) {
+                subjects = subjectEntities;
                 adapter.setSubjects(subjects);
             }
         });
+
+        recyclerView.setAdapter(adapter);
 
         /* The button that open the addSubject activity */
         FloatingActionButton buttonAddSubject = categoryView.findViewById(R.id.button_add_subject);
@@ -89,12 +98,10 @@ public class ListSubjectFragment extends Fragment {
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
 
-               // Subject subject = new Subject(title, message, category, PostingDate,USER_ID);
+                SubjectEntity subjectEntity = new SubjectEntity(title, message, category, PostingDate, USER_ID_CLOUD);
 
-                SubjectEntity subjectEntity = new SubjectEntity(title, message,category, PostingDate, USER_ID_CLOUD);
-
-               // subjectVM.insert(subject);
-
+                // subjectVM.insert(subject);
+                subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
                 subjectVM.insertCloud(subjectEntity, new AsyncTaskListener() {
 
                     @Override

@@ -13,8 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectListLiveData extends LiveData<List<SubjectEntity>>
-{
+public class SubjectListLiveData extends LiveData<List<SubjectEntity>> {
 
     private static final String TAG = "SubjectList";
 
@@ -49,12 +48,12 @@ public class SubjectListLiveData extends LiveData<List<SubjectEntity>>
     }
 
     private List<SubjectEntity> toSubjectList(DataSnapshot snapshot) {
-        List<SubjectEntity> clients = new ArrayList<>();
+        List<SubjectEntity> subjects = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             SubjectEntity entity = childSnapshot.getValue(SubjectEntity.class);
             entity.setIdSubject(childSnapshot.getKey());
-            clients.add(entity);
+            subjects.add(entity);
         }
-        return clients;
+        return subjects;
     }
 }

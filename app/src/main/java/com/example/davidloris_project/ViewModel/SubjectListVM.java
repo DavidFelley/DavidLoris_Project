@@ -8,6 +8,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.davidloris_project.BaseApp;
 import com.example.davidloris_project.Entity.SubjectEntity;
 import com.example.davidloris_project.Repository.SubjectRepository;
 
@@ -15,22 +16,22 @@ import java.util.List;
 
 public class SubjectListVM extends AndroidViewModel
 {
-
     private SubjectRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<SubjectEntity>> observableSubjects;
 
-    public SubjectListVM(@NonNull Application application, SubjectRepository clientRepository) {
+    public SubjectListVM(@NonNull Application application, final String category, SubjectRepository subjectRepository) {
         super(application);
 
-        repository = clientRepository;
+        repository = subjectRepository;
 
         observableSubjects = new MediatorLiveData<>();
+
         // set by default null, until we get data from the database.
         observableSubjects.setValue(null);
 
-        LiveData<List<SubjectEntity>> subjects = repository.getAllSubjectsCloud();
+        LiveData<List<SubjectEntity>> subjects = repository.getSubjectFromCategoryCloud(category);
 
         // observe the changes of the entities from the database and forward them
         observableSubjects.addSource(subjects, observableSubjects::setValue);
@@ -44,24 +45,24 @@ public class SubjectListVM extends AndroidViewModel
         @NonNull
         private final Application application;
 
-        private final SubjectRepository clientRepository;
+        private final SubjectRepository subjectRepository;
 
-        public Factory(@NonNull Application application) {
+        private final String mCategory;
+
+        public Factory(@NonNull Application application, String category) {
             this.application = application;
-            clientRepository = SubjectRepository.getInstance();
+            this.mCategory = category;
+            this.subjectRepository = ((BaseApp) application).getSubjectRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new SubjectListVM(application, clientRepository);
+            return (T) new SubjectListVM(application, mCategory, subjectRepository);
         }
     }
 
-    /**
-     * Expose the LiveData ClientEntities query so the UI can observe it.
-     */
-    public LiveData<List<SubjectEntity>> getSubjectsCloud()
+    public LiveData<List<SubjectEntity>> getSubjects()
     {
         return observableSubjects;
     }
