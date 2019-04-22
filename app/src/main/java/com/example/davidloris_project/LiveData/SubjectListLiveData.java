@@ -18,10 +18,12 @@ public class SubjectListLiveData extends LiveData<List<SubjectEntity>> {
     private static final String TAG = "SubjectList";
 
     private final DatabaseReference reference;
+    private final String category;
     private final MyValueEventListener listener = new MyValueEventListener();
 
-    public SubjectListLiveData(DatabaseReference ref) {
+    public SubjectListLiveData(DatabaseReference ref, String cat) {
         reference = ref;
+        category = cat;
     }
 
     @Override
@@ -38,7 +40,7 @@ public class SubjectListLiveData extends LiveData<List<SubjectEntity>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toSubjectList(dataSnapshot));
+            setValue(toSubjectList(dataSnapshot, category));
         }
 
         @Override
@@ -47,12 +49,14 @@ public class SubjectListLiveData extends LiveData<List<SubjectEntity>> {
         }
     }
 
-    private List<SubjectEntity> toSubjectList(DataSnapshot snapshot) {
+    private List<SubjectEntity> toSubjectList(DataSnapshot snapshot, String category) {
         List<SubjectEntity> subjects = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             SubjectEntity entity = childSnapshot.getValue(SubjectEntity.class);
             entity.setIdSubject(childSnapshot.getKey());
-            subjects.add(entity);
+
+            if(entity.getCategory().equals(category))
+                subjects.add(entity);
         }
         return subjects;
     }

@@ -49,7 +49,7 @@ public class SubjectRepository {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("subjects");
 
-        return new SubjectListLiveData(reference);
+        return new SubjectListLiveData(reference, category);
     }
 
     public void insertCloud(final SubjectEntity subject, final AsyncTaskListener callBack) {
