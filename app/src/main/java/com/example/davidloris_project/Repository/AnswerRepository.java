@@ -4,15 +4,99 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
+import com.example.davidloris_project.Entity.AnswerEntity;
 import com.example.davidloris_project.Local.AnswerDAO;
 import com.example.davidloris_project.Local.MyDatabase;
 import com.example.davidloris_project.Model.Answer;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class AnswerRepository {
     private AnswerDAO answerDao;
+
+    private static AnswerRepository instance;
+
+    public AnswerRepository()
+    {
+
+    }
+
+    public static AnswerRepository getInstance()
+    {
+
+        if (instance == null) {
+            synchronized (AnswerRepository.class) {
+                if (instance == null) {
+                    instance = new AnswerRepository();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void insertCloud(final AnswerEntity answer, final AsyncTaskListener callback)
+    {
+
+        String id = FirebaseDatabase.getInstance().getReference("answers").push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference("answers")
+                .child(id)
+                .setValue(answer, ((databaseError, databaseReference) -> {
+
+                    if(databaseError != null)
+                    {
+                        callback.onFailure(databaseError.toException());
+                    }else
+                    {
+                        callback.onSuccess();
+                    }
+
+                } ));
+
+    }
+
+
+    public void updateCloud(final AnswerEntity answer, AsyncTaskListener callback)
+    {
+        FirebaseDatabase.getInstance()
+                .getReference("answers")
+                .child(answer.getIdAnswer())
+                .updateChildren(answer.toMap(), ((databaseError, databaseReference) ->
+                {
+                    if (databaseError != null)
+                    {
+                        callback.onFailure(databaseError.toException());
+                    }
+                    else
+                    {
+                        callback.onSuccess();
+                    }
+                }));
+
+
+    }
+
+    public void deleteCloud(final AnswerEntity answer, AsyncTaskListener callback)
+    {
+        FirebaseDatabase.getInstance()
+                .getReference("answers")
+                .child(answer.getIdAnswer())
+                .removeValue(((databaseError, databaseReference) ->
+                {
+                    if(databaseError != null)
+                    {
+                        callback.onFailure(databaseError.toException());
+                    }
+                    else
+                    {
+                        callback.onSuccess();
+                    }
+                }));
+    }
+
 
     public AnswerRepository(Application application) {
         MyDatabase database = MyDatabase.getInstance(application);

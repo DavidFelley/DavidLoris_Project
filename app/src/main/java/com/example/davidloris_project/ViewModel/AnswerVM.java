@@ -5,7 +5,9 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
+import com.example.davidloris_project.Entity.AnswerEntity;
 import com.example.davidloris_project.Model.Answer;
 import com.example.davidloris_project.Repository.AnswerRepository;
 
@@ -17,6 +19,22 @@ public class AnswerVM extends AndroidViewModel {
 
 
     private AnswerRepository repository;
+
+
+    public void updateCloud(AnswerEntity answerEntity, AsyncTaskListener callback)
+    {
+        AnswerRepository.getInstance().updateCloud(answerEntity, callback);
+    }
+
+    public void deleteCloud(AnswerEntity answerEntity, AsyncTaskListener callback)
+    {
+        AnswerRepository.getInstance().deleteCloud(answerEntity, callback);
+    }
+
+    public void insertCloud(AnswerEntity answerEntity, AsyncTaskListener callback)
+    {
+        AnswerRepository.getInstance().insertCloud(answerEntity, callback);
+    }
 
     public AnswerVM(@NonNull Application application) {
         super(application);
