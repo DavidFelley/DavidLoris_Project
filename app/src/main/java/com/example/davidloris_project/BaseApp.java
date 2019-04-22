@@ -9,5 +9,4 @@ public class BaseApp extends Application {
     public UserRepository getClientRepository() {
         return UserRepository.getInstance();
     }
-
 }
