@@ -31,6 +31,8 @@ public class UserRepository {
         return instance;
     }
 
+
+
     public void signIn(final String email, final String password,
                        final OnCompleteListener<AuthResult> listener) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

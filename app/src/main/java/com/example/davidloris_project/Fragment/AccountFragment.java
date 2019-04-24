@@ -20,6 +20,8 @@ import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.Model.User;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import static com.example.davidloris_project.Fragment.LoginFragment.MY_PREFS_NAME;
 
@@ -34,6 +36,7 @@ public class AccountFragment extends Fragment {
     private EditText editTextConfirmPasswd;
     private String newPasswd;
     private String confirmPassword;
+    private FirebaseUser userEntity ;
 
     @Nullable
     @Override
@@ -54,6 +57,8 @@ public class AccountFragment extends Fragment {
         Button changePasswd = v.findViewById(R.id.btn_changePwd);
         changePasswd.setOnClickListener(changePasswdClick);
 
+
+
         return v;
 
     }
@@ -68,39 +73,25 @@ public class AccountFragment extends Fragment {
     //We check the UserPass
     public void controleUserPass() {
 
-        String oldPasswd = editTextOldPasswd.getText().toString();
+        userEntity = FirebaseAuth.getInstance().getCurrentUser();
+
+
         newPasswd = editTextNewPasswd.getText().toString();
         confirmPassword = editTextConfirmPasswd.getText().toString();
         username = textUsername.getText().toString();
 
-        userVM.getUserLogin(username, oldPasswd, new AsyncTaskListener() {
+
+        if (newPasswd.equals(confirmPassword)) {
+            userEntity.updatePassword(newPasswd);
+            Toast.makeText(getActivity(), "password changed", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+
+        }
 
 
-            @Override
-            public void onFailure(Exception e) {
-
-            }
-
-            @Override
-            public void onFailure() {
-                Toast.makeText(getActivity(), "Old password incorrect", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSuccess() {
-
-                if (newPasswd.equals(confirmPassword)) {
-                    userVM.updateUserPasswd(username, newPasswd);
-                    Toast.makeText(getActivity(), "password changed", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getActivity(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-
-        });
     }
 }
