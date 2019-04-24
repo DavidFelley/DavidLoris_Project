@@ -31,7 +31,6 @@ public class AccountFragment extends Fragment {
     private UserVM userVM;
     private String username;
     private TextView textUsername;
-    private EditText editTextOldPasswd;
     private EditText editTextNewPasswd;
     private EditText editTextConfirmPasswd;
     private String newPasswd;
@@ -46,7 +45,6 @@ public class AccountFragment extends Fragment {
 
         //We get the different TextView in the layout
         editTextNewPasswd = v.findViewById(R.id.newPassword);
-        editTextOldPasswd = v.findViewById(R.id.ancienPassword);
         editTextConfirmPasswd = v.findViewById(R.id.confirmPassword);
         textUsername = v.findViewById(R.id.nameUser);
 
