@@ -76,14 +76,6 @@ public class LoginFragment extends Fragment {
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            editTextPassword.setError("Invalid password");
-            editTextPassword.setText("");
-            focusView = editTextPassword;
-            cancel = true;
-        }
-
         // Check for a valid email address.
         if (TextUtils.isEmpty(username)) {
             editTextLogin.setError("Field is required");
@@ -92,6 +84,14 @@ public class LoginFragment extends Fragment {
         } else if (!isEmailValid(username)) {
             editTextLogin.setError("Invalid email");
             focusView = editTextLogin;
+            cancel = true;
+        }
+
+        // Check for a valid password, if the user entered one.
+        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
+            editTextPassword.setError("Invalid password");
+            editTextPassword.setText("");
+            focusView = editTextPassword;
             cancel = true;
         }
 
