@@ -50,11 +50,11 @@ public class AddEditAnswerActivity extends AppCompatActivity {
         data.putExtra(EXTRA_MESSAGE, message);
 
         /* Check if we are here to edit or to create a new answer*/
-        int id = getIntent().getIntExtra(EXTRA_IDMESSAGE, -1);
+        String id = getIntent().getStringExtra(EXTRA_IDMESSAGE);
 
 
         /* if we come to edit we have pass the id of the answer and we need to give it back */
-        if (id != -1)
+        if (id != null)
             data.putExtra(EXTRA_IDMESSAGE, id);
 
         setResult(RESULT_OK, data);
@@ -64,14 +64,14 @@ public class AddEditAnswerActivity extends AppCompatActivity {
     /* Menu creator for the two buttons save and delete */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        int id = getIntent().getIntExtra(EXTRA_IDMESSAGE, -1);
+        String id = getIntent().getStringExtra(EXTRA_IDMESSAGE);
 
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.add_subject_menu, menu);
 
         MenuItem menuItem = menu.findItem(R.id.delete_subject);
         /* if we come to create a new note the delete button is not visible */
-        if (id != -1)
+        if (id != null)
             menuItem.setVisible(true);
 
         return true;
@@ -96,9 +96,9 @@ public class AddEditAnswerActivity extends AppCompatActivity {
     private void deleteAnswer() {
         Intent data = new Intent();
 
-        int id = getIntent().getIntExtra(EXTRA_IDMESSAGE, -1);
+        String id = getIntent().getStringExtra(EXTRA_IDMESSAGE);
 
-        if (id != -1)
+        if (id != null)
             data.putExtra(EXTRA_IDMESSAGE, id);
 
         /* We send back the value for the OnResultMethod */

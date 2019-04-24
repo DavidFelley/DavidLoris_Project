@@ -34,7 +34,7 @@ public class UserEntity {
     @Exclude
     public Map<String, Object> toValueMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put(idUser, username);
+        result.put("username", username);
         return result;
     }
 }

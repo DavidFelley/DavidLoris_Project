@@ -4,23 +4,26 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.davidloris_project.Entity.AnswerEntity;
 import com.example.davidloris_project.Entity.SubjectEntity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class SubjectLiveData extends LiveData<SubjectEntity>
-{
+import java.util.ArrayList;
+import java.util.List;
 
-    private static final String TAG = "SubjectLiveData";
+public class AnswerListLiveData extends LiveData<List<AnswerEntity>> {
+
+    private static final String TAG = "SubjectList";
 
     private final DatabaseReference reference;
-    private final MyValueEventListener listener = new MyValueEventListener();
     private final String idSubject;
+    private final AnswerListLiveData.MyValueEventListener listener = new AnswerListLiveData.MyValueEventListener();
 
-    public SubjectLiveData(DatabaseReference ref, String idSubject) {
-        this.reference = ref;
+    public AnswerListLiveData(DatabaseReference reference, String idSubject) {
+        this.reference = reference;
         this.idSubject = idSubject;
     }
 
@@ -38,24 +41,25 @@ public class SubjectLiveData extends LiveData<SubjectEntity>
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(getSubject(dataSnapshot));
+            setValue(toAnswerList(dataSnapshot, idSubject));
         }
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
-            Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
+            Log.i(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
     }
 
-    private SubjectEntity getSubject(DataSnapshot snapshot) {
+    private List<AnswerEntity> toAnswerList(DataSnapshot snapshot, String idSubject) {
+        List<AnswerEntity> answers = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            SubjectEntity entity = childSnapshot.getValue(SubjectEntity.class);
-            entity.setIdSubject(childSnapshot.getKey());
+            AnswerEntity entity = childSnapshot.getValue(AnswerEntity.class);
+            entity.setIdAnswer(childSnapshot.getKey());
 
-            if(entity.getId().equals(idSubject))
-                return entity;
+            if(entity.getIdSubject().equals(idSubject))
+                answers.add(entity);
+
         }
-
-        return null;
+        return answers;
     }
 }

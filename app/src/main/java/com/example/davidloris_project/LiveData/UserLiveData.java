@@ -4,24 +4,22 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.davidloris_project.Entity.SubjectEntity;
+import com.example.davidloris_project.Entity.UserEntity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class SubjectLiveData extends LiveData<SubjectEntity>
-{
-
-    private static final String TAG = "SubjectLiveData";
+public class UserLiveData extends LiveData<String> {
+    private static final String TAG = "StudentListLiveData";
 
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
-    private final String idSubject;
+    private final String uId;
 
-    public SubjectLiveData(DatabaseReference ref, String idSubject) {
-        this.reference = ref;
-        this.idSubject = idSubject;
+    public UserLiveData(DatabaseReference ref, String uId) {
+        reference = ref;
+        this.uId = uId;
     }
 
     @Override
@@ -38,7 +36,7 @@ public class SubjectLiveData extends LiveData<SubjectEntity>
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(getSubject(dataSnapshot));
+            setValue(getUsername(dataSnapshot));
         }
 
         @Override
@@ -47,15 +45,16 @@ public class SubjectLiveData extends LiveData<SubjectEntity>
         }
     }
 
-    private SubjectEntity getSubject(DataSnapshot snapshot) {
+    private String getUsername(DataSnapshot snapshot) {
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            SubjectEntity entity = childSnapshot.getValue(SubjectEntity.class);
-            entity.setIdSubject(childSnapshot.getKey());
+            UserEntity entity = childSnapshot.getValue(UserEntity.class);
+            entity.setIdUser(childSnapshot.getKey());
+            Log.i("*** USER ID ***", entity.getIdUser());
 
-            if(entity.getId().equals(idSubject))
-                return entity;
+            if(entity.getIdUser().equals(uId))
+                return entity.getUsername();
         }
 
-        return null;
+        return "";
     }
 }

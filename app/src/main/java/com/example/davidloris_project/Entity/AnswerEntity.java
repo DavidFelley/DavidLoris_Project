@@ -1,5 +1,6 @@
 package com.example.davidloris_project.Entity;
 
+import com.example.davidloris_project.Model.Answer;
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
@@ -17,6 +18,8 @@ public class AnswerEntity
     private String idSubject;
 
     private String date;
+
+    public AnswerEntity(){}
 
     public AnswerEntity(String textAnswer, String idAutor, String idSubject, String date)
     {

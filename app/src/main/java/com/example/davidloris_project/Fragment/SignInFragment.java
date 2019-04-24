@@ -124,11 +124,6 @@ public class SignInFragment extends Fragment {
                     editTextPassword.requestFocus();
                 }
             }
-
-            @Override
-            public void onFailure() {
-
-            }
         });
     }
 }

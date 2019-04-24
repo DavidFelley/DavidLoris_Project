@@ -7,16 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.davidloris_project.CompositeObjects.AnswerWithUsername;
+import com.example.davidloris_project.Entity.AnswerEntity;
 import com.example.davidloris_project.R;
+import com.example.davidloris_project.ViewModel.UserVM;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder> {
-    private List<AnswerWithUsername> messages = new ArrayList<>();
+
+    private UserVM userVM;
+    private List<AnswerEntity> messages = new ArrayList<>();
     private onItemClickListener listener;
 
+    public MessageAdapter(UserVM userVM) {
+        this.userVM = userVM;
+    }
 
     //Create the view
     @NonNull
@@ -29,10 +35,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageHolder messageHolder, int position) {
-        AnswerWithUsername currentMessage = messages.get(position);
-        messageHolder.textViewIdMessage.setText(String.valueOf(currentMessage.getIdAnswer()));
+        AnswerEntity currentMessage = messages.get(position);
+        messageHolder.textViewIdMessage.setText(currentMessage.getIdAnswer());
         messageHolder.textViewMessageContent.setText(currentMessage.getTextAnswer());
-        messageHolder.textViewPseudo.setText(currentMessage.getPseudo());
+        messageHolder.textViewPseudo.setText("ntm");
         messageHolder.textViewDateMessage.setText(currentMessage.getDate());
     }
 
@@ -42,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         return messages.size();
     }
 
-    public void setMessages(List<AnswerWithUsername> messages) {
+    public void setMessages(List<AnswerEntity> messages) {
         this.messages = messages;
         notifyDataSetChanged();
     }
@@ -74,7 +80,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
     }
 
     public interface onItemClickListener {
-        void onItemClick(AnswerWithUsername answer);
+        void onItemClick(AnswerEntity answer);
     }
 
     public void setOnItemClickListener(onItemClickListener listener) {

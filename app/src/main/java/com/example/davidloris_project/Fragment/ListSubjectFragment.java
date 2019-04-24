@@ -1,6 +1,5 @@
 package com.example.davidloris_project.Fragment;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +19,10 @@ import com.example.davidloris_project.Activity.AddSubjectActivity;
 import com.example.davidloris_project.Adapter.SubjectAdapter;
 import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Entity.SubjectEntity;
-import com.example.davidloris_project.Model.Subject;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.SubjectListVM;
 import com.example.davidloris_project.ViewModel.SubjectVM;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,8 +30,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
-import static com.example.davidloris_project.Fragment.LoginFragment.USER_ID_CLOUD;
 
 public class ListSubjectFragment extends Fragment {
     public static final int ADD_SUBJECT_REQUEST = 1;
@@ -97,8 +93,10 @@ public class ListSubjectFragment extends Fragment {
                 String message = data.getStringExtra(AddSubjectActivity.EXTRA_MESSAGE);
 
                 String PostingDate = date.format(Calendar.getInstance().getTime());
+                String uId = FirebaseAuth.getInstance().getUid();
 
-                SubjectEntity subjectEntity = new SubjectEntity(title, message, category, PostingDate, USER_ID_CLOUD);
+                // Get username ici pour insert
+                SubjectEntity subjectEntity = new SubjectEntity(title, message, category, PostingDate, uId);
 
                 // subjectVM.insert(subject);
                 subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
@@ -106,21 +104,15 @@ public class ListSubjectFragment extends Fragment {
 
                     @Override
                     public void onFailure(Exception e) {
-
-                    }
-
-                    @Override
-                    public void onFailure() {
-
+                        Log.i("Fail posting Subject", e.getMessage());
                     }
 
                     @Override
                     public void onSuccess() {
-
+                        Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                Toast.makeText(getActivity(), "Subject posted", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getActivity(), "A wild problem appeared !", Toast.LENGTH_SHORT).show();
             }

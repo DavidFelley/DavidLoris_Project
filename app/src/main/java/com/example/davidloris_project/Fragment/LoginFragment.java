@@ -16,8 +16,6 @@ import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.BaseApp;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.Repository.UserRepository;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginFragment extends Fragment {
@@ -28,7 +26,6 @@ public class LoginFragment extends Fragment {
     private EditText editTextPassword;
 
     public static String MY_PREFS_NAME;
-    static String USER_ID_CLOUD;
 
     @Nullable
     @Override
@@ -36,7 +33,7 @@ public class LoginFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
-        repository = ((BaseApp) getActivity().getApplication()).getClientRepository();
+        repository = ((BaseApp) getActivity().getApplication()).getUserRepository();
 
         //Get the informations about the login
         editTextLogin = v.findViewById(R.id.usernameField_login);
@@ -109,7 +106,6 @@ public class LoginFragment extends Fragment {
                     startActivity(intent);
                     editTextLogin.setText("");
                     editTextPassword.setText("");
-                    USER_ID_CLOUD = FirebaseAuth.getInstance().getUid();
                 } else {
                     editTextLogin.setError("Invalid username or password");
                     editTextLogin.requestFocus();
