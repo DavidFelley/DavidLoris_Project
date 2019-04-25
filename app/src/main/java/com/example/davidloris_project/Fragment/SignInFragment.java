@@ -81,8 +81,15 @@ public class SignInFragment extends Fragment {
         final String confirmPassword = editTextConfirmPassword.getText().toString();
 
         if (username.trim().isEmpty()) {
-            editTextUsername.setError("Invalid username");
+            editTextUsername.setError("Username required");
             editTextUsername.requestFocus();
+            return;
+        }
+
+        if(password.trim().isEmpty())
+        {
+            editTextPassword.setError("Field required");
+            editTextPassword.requestFocus();
             return;
         }
 

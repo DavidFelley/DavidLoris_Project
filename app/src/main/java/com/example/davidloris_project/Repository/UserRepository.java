@@ -26,6 +26,16 @@ public class UserRepository {
         return instance;
     }
 
+    public void updatePwd(final String password, final AsyncTaskListener callback) {
+        FirebaseAuth.getInstance().getCurrentUser().updatePassword(password).addOnCompleteListener(task -> {
+            if(task.isSuccessful())
+                callback.onSuccess();
+            else
+                callback.onFailure(task.getException());
+        });
+
+    }
+
     public void signIn(final String email, final String password,
                        final OnCompleteListener<AuthResult> listener) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
@@ -65,9 +75,9 @@ public class UserRepository {
                 });
     }
 
-    public LiveData<String> getUsername(String uId){
+    public LiveData<String> getUsername(String uId) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 
-        return new UserLiveData(reference,uId);
+        return new UserLiveData(reference, uId);
     }
 }
