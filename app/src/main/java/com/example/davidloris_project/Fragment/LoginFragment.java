@@ -114,17 +114,18 @@ public class LoginFragment extends Fragment {
         } else {
             repository.signIn(username, password, task -> {
                 if (task.isSuccessful()) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if(user.isEmailVerified()) {
+                    // A REMETTRE POUR PRESENTATION CONTROLE EMAIL
+                    /*FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(user.isEmailVerified()) {*/
                         Intent intent = new Intent(getActivity(), HomeActivity.class);
                         startActivity(intent);
                         editTextLogin.setText("");
                         editTextPassword.setText("");
-                    }
+                    /*}
                     else {
                         editTextLogin.setError("Please verify your email");
                         editTextLogin.requestFocus();
-                    }
+                    }*/
                 } else {
                     editTextLogin.setError("Invalid username or password");
                     editTextLogin.requestFocus();
