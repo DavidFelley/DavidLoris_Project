@@ -24,4 +24,6 @@
     <string name="SendButton">send</string>
     <string name="DeleteButton">DeleteButton</string>
     <string name="email">Email</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="password_forgotten"><u>Password Forgotten ?</u></string>
 </resources>

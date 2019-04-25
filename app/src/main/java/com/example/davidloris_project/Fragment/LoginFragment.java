@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.BaseApp;
@@ -48,6 +49,9 @@ public class LoginFragment extends Fragment {
         Button signinButton = v.findViewById(R.id.buttonSignin_login);
         signinButton.setOnClickListener(signInClick);
 
+        TextView pwdForgot = v.findViewById(R.id.tvPwdForgot);
+        pwdForgot.setOnClickListener(clickForgot);
+
         return v;
     }
 
@@ -62,6 +66,13 @@ public class LoginFragment extends Fragment {
         @Override
         public void onClick(View v) {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new SignInFragment()).commit();
+        }
+    };
+
+    View.OnClickListener clickForgot = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new ResetPwdFragment()).commit();
         }
     };
 
