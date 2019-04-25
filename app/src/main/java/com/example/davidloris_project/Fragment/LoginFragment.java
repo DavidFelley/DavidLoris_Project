@@ -16,6 +16,8 @@ import com.example.davidloris_project.Activity.HomeActivity;
 import com.example.davidloris_project.BaseApp;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.Repository.UserRepository;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class LoginFragment extends Fragment {
@@ -24,7 +26,6 @@ public class LoginFragment extends Fragment {
     private UserRepository repository;
     private EditText editTextLogin;
     private EditText editTextPassword;
-
     public static String MY_PREFS_NAME;
 
     @Nullable
@@ -102,10 +103,17 @@ public class LoginFragment extends Fragment {
         } else {
             repository.signIn(username, password, task -> {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
-                    editTextLogin.setText("");
-                    editTextPassword.setText("");
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(user.isEmailVerified()) {
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                        startActivity(intent);
+                        editTextLogin.setText("");
+                        editTextPassword.setText("");
+                    }
+                    else {
+                        editTextLogin.setError("Please verify your email");
+                        editTextLogin.requestFocus();
+                    }
                 } else {
                     editTextLogin.setError("Invalid username or password");
                     editTextLogin.requestFocus();
@@ -120,6 +128,6 @@ public class LoginFragment extends Fragment {
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 4;
+        return password.length() > 5;
     }
 }

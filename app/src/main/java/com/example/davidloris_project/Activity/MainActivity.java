@@ -1,6 +1,5 @@
 package com.example.davidloris_project.Activity;
 
-import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;

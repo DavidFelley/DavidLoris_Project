@@ -68,12 +68,11 @@ public class InSubjectFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
 
-        final MessageAdapter adapter = new MessageAdapter(userVM);
-
         answerVM = ViewModelProviders.of(this).get(AnswerVM.class);
-
-        SubjectVM subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
         userVM = ViewModelProviders.of(this).get(UserVM.class);
+        SubjectVM subjectVM = ViewModelProviders.of(this).get(SubjectVM.class);
+
+        final MessageAdapter adapter = new MessageAdapter(userVM, this.getActivity());
 
         /* Show subject on top of the page */
         subjectVM.getSubjectByIdCloud(idSubject).observe(this, subjectEntity -> {
@@ -116,7 +115,6 @@ public class InSubjectFragment extends Fragment {
                 intent.putExtra(AddEditAnswerActivity.EXTRA_MESSAGE, answer.getTextAnswer());
                 startActivityForResult(intent, EDIT_ANSWER_REQUEST);
             }
-            Log.i("**** CA MARCHE PAS ****", "CA MARCHE PAS DU TOUUUUUUUUUUUUUUUUUUUUUUT XXXXXXXXXXXXXXXXXXXX");
         });
 
         return inSubjectView;

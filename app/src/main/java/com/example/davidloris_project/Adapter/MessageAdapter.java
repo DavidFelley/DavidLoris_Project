@@ -1,5 +1,6 @@
 package com.example.davidloris_project.Adapter;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,11 +18,13 @@ import java.util.List;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageHolder> {
 
     private UserVM userVM;
+    private LifecycleOwner activity;
     private List<AnswerEntity> messages = new ArrayList<>();
     private onItemClickListener listener;
 
-    public MessageAdapter(UserVM userVM) {
+    public MessageAdapter(UserVM userVM, LifecycleOwner activity) {
         this.userVM = userVM;
+        this.activity = activity;
     }
 
     //Create the view
@@ -38,7 +41,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
         AnswerEntity currentMessage = messages.get(position);
         messageHolder.textViewIdMessage.setText(currentMessage.getIdAnswer());
         messageHolder.textViewMessageContent.setText(currentMessage.getTextAnswer());
-        messageHolder.textViewPseudo.setText("ntm");
+        userVM.getUsername(currentMessage.getIdAutor()).observe(activity, s ->  messageHolder.textViewPseudo.setText(s));
         messageHolder.textViewDateMessage.setText(currentMessage.getDate());
     }
 

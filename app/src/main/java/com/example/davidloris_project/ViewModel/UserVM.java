@@ -22,7 +22,8 @@ public class UserVM extends AndroidViewModel {
         UserRepository.getInstance().register(email, pwd, user, callback);
     }
 
-    public LiveData<String> getUsername(String uId){
+    public LiveData<String> getUsername(String uId) {
+
         return repository.getUsername(uId);
     }
 }

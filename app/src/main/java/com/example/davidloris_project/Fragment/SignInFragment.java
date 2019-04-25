@@ -16,6 +16,10 @@ import com.example.davidloris_project.AsyncTaskListener;
 import com.example.davidloris_project.Entity.UserEntity;
 import com.example.davidloris_project.R;
 import com.example.davidloris_project.ViewModel.UserVM;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignInFragment extends Fragment {
 
@@ -108,7 +112,11 @@ public class SignInFragment extends Fragment {
         userVM.createUser(email, password, user, new AsyncTaskListener() {
             @Override
             public void onSuccess() {
-                Toast.makeText(getActivity(), "User created successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "User created successfully, please verify your email", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user.sendEmailVerification();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_container, new LoginFragment()).commit();
             }
 
             @Override
